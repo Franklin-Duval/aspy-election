@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Image } from 'antd';
+import { defaultImage } from 'src/shared/defaultImage';
 
 const SectionContainer = styled.div<{ reverse?: boolean }>`
   min-height: 400px;
@@ -59,7 +60,12 @@ export const Section = ({
   return (
     <SectionContainer reverse={textBeforeImage} id='about'>
       <div className='block'>
-        <Image src={imageUrl} alt='website' preview={false} />
+        <Image
+          src={imageUrl}
+          alt='website'
+          preview={false}
+          fallback={defaultImage}
+        />
       </div>
       <div className='block textBox'>
         <h1 className='title'>{title}</h1>

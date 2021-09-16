@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaBars } from 'react-icons/fa';
 import { ROUTES } from 'src/routes';
+import { defaultImage } from 'src/shared/defaultImage';
 import { ButtonOutline } from '../../styles/Button';
 
 const NavLink = styled.a`
@@ -120,6 +121,7 @@ export const TopNavBar = () => {
           width={90}
           preview={false}
           style={{ objectFit: 'cover' }}
+          fallback={defaultImage}
           onClick={() => router.push(ROUTES.HOME_PAGE)}
         />
       </div>

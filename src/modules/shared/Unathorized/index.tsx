@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Button, Image } from 'antd';
+import { defaultImage } from 'src/shared/defaultImage';
 
 const UnauthorizedContainer = styled.div`
   display: flex;
@@ -47,6 +48,7 @@ export const Unauthorized = () => {
           src='/401.svg'
           width={250}
           style={{ objectFit: 'cover' }}
+          fallback={defaultImage}
           preview={false}
         />
         <h3 className='text-description'>

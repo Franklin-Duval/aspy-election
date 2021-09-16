@@ -38,7 +38,7 @@ export const Home = () => {
       <div style={{ maxWidth: '85%', margin: 'auto' }}>
         <TopNavBar />
         <Banner
-          title='Bienvenue sur MArk Equipment and Location'
+          title='ASPY Voting Platform'
           description='MAEL est une application qui permet le suivi et la localisation des
         équipements de votre entreprise à tout instant, disponible sur sa
         plateforme web et version Desktop pour vos ordinateurs'
