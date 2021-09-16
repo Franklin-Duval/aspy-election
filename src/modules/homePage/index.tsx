@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { ROUTES } from 'src/routes/constants';
+import { ROUTES } from 'src/routes';
 import { Banner } from './components/Banner';
 import { Footer } from './components/Footer';
 import { Presentation } from './components/Presentation';
@@ -44,7 +44,7 @@ export const Home = () => {
         plateforme web et version Desktop pour vos ordinateurs'
           buttonProps={{
             text: 'Commencer',
-            onClick: () => router.push(ROUTES.COMPANY.NEW_COMPANY),
+            onClick: () => router.push(ROUTES.HOME_PAGE),
           }}
         />
       </div>
