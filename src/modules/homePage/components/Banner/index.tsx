@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Button } from '../../styles/Button';
 
 const BannerContainer = styled.div`
   min-height: 550px;
@@ -9,16 +8,17 @@ const BannerContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 30px;
+  background-color: #263238;
 
   > .title {
-    color: #48347c;
+    color: white;
     font-size: 40px;
     max-width: 900px;
     text-align: center;
   }
 
   > .description {
-    color: #6b707a;
+    color: #eceff1;
     font-size: 18px;
     text-align: center;
     max-width: 750px;
@@ -34,21 +34,14 @@ const BannerContainer = styled.div`
 export const Banner = ({
   title,
   description,
-  buttonProps,
 }: {
   title: string;
   description: string;
-  buttonProps: { text: string; onClick: () => void };
 }) => {
   return (
     <BannerContainer>
       <h1 className='title'>{title}</h1>
       <p className='description'>{description}</p>
-      {buttonProps.text && (
-        <Button onClick={() => buttonProps?.onClick()}>
-          {buttonProps.text}
-        </Button>
-      )}
     </BannerContainer>
   );
 };
