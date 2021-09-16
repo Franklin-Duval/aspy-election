@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Image } from 'antd';
+import { Image, Space } from 'antd';
 import { signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -7,7 +7,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FaBars } from 'react-icons/fa';
 import { ROUTES } from 'src/routes';
 import { defaultImage } from 'src/shared/defaultImage';
-import { ButtonOutline } from '../../styles/Button';
+import { Button, ButtonOutline } from '../../styles/Button';
 
 const NavLink = styled.a`
   font-size: 16px;
@@ -93,16 +93,14 @@ const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
   return (
     <div className={closeMenu ? 'menu-linkContainer' : 'linkContainer'}>
       <NavLink href='#presentation' onClick={closeMenu}>
-        Présentation
-      </NavLink>
-      <NavLink href='#about' onClick={closeMenu}>
-        A Propos
+        Home
       </NavLink>
       <NavLink href='#contact' onClick={closeMenu}>
         Contact
       </NavLink>
+      <Button onClick={() => signIn('Custom_sigin')}>Login</Button>
       <ButtonOutline onClick={() => signIn('Custom_sigin')}>
-        Se Connecter
+        Registration
       </ButtonOutline>
     </div>
   );
@@ -113,18 +111,19 @@ export const TopNavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <TopNavBarContainer>
-      <div className='logo'>
+      <Space className='logo'>
         <Image
           alt='logo'
           src='/logo.png'
-          height={50}
-          width={90}
+          height={55}
+          width={60}
           preview={false}
           style={{ objectFit: 'cover' }}
           fallback={defaultImage}
           onClick={() => router.push(ROUTES.HOME_PAGE)}
         />
-      </div>
+        <h2>ASPY Election</h2>
+      </Space>
       <MenuContent />
 
       <div className={showMenu ? 'menu' : 'menu-close'}>
