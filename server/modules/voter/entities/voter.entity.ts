@@ -1,6 +1,6 @@
 import { DepartmentType, LevelType } from 'server/shared/customTypes';
 
-interface VoterEntityJSON {
+export interface VoterEntityJSON {
   _id: string;
   name: string;
   surename: string;
