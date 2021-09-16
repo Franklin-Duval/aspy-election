@@ -9,11 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "antd": "^4.16.13",
+    "bcryptjs": "^2.4.3",
+    "gridfs-stream": "^1.1.1",
+    "mongodb": "4.0.1",
+    "multer": "^1.4.3",
+    "multer-gridfs-storage": "^5.0.1",
     "next": "11.1.2",
+    "next-auth": "^3.29.0",
+    "next-connect": "^0.10.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-icons": "^4.2.0",
+    "react-spinners": "^0.11.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/gridfs-stream": "^0.5.35",
     "@types/react": "17.0.21",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
