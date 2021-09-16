@@ -11,6 +11,7 @@ export interface VoterEntityJSON {
   level: LevelType;
   image: string;
   creation_date: string;
+  secret_code: string;
   voted: boolean;
 }
 
@@ -24,6 +25,7 @@ export class VoterEntity implements VoterEntityJSON {
   department: DepartmentType;
   level: LevelType;
   image: string;
+  secret_code: string;
   creation_date: string;
   voted: boolean;
 
@@ -37,6 +39,7 @@ export class VoterEntity implements VoterEntityJSON {
     this.department = voter.department;
     this.level = voter.level;
     this.image = voter.image;
+    this.secret_code = voter.secret_code;
     this.creation_date = voter.creation_date;
     this.voted = voter.voted;
   }
