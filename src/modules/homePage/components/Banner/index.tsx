@@ -1,4 +1,7 @@
 import styled from '@emotion/styled';
+import { Space } from 'antd';
+import { signIn } from 'next-auth/client';
+import { ButtonOutline } from '../../styles/Button';
 
 const BannerContainer = styled.div`
   min-height: 550px;
@@ -42,6 +45,14 @@ export const Banner = ({
     <BannerContainer>
       <h1 className='title'>{title}</h1>
       <p className='description'>{description}</p>
+      <Space>
+        <ButtonOutline onClick={() => signIn('Custom_sigin')}>
+          Login
+        </ButtonOutline>
+        <ButtonOutline onClick={() => signIn('Custom_sigin')}>
+          Registration
+        </ButtonOutline>
+      </Space>
     </BannerContainer>
   );
 };
