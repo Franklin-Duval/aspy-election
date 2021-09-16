@@ -30,6 +30,7 @@ export class CandidateEntity
       level: candidate.level,
       image: candidate.image,
       creation_date: candidate.creation_date,
+      secret_code: candidate.secret_code,
       voted: candidate.voted,
     });
 
