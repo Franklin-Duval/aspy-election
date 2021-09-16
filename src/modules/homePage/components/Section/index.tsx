@@ -26,7 +26,7 @@ const SectionContainer = styled.div<{ reverse?: boolean }>`
 
     > .title {
       font-size: 30px;
-      color: #7a39e0;
+      color: #263238;
     }
 
     > .content {
@@ -65,6 +65,8 @@ export const Section = ({
           alt='website'
           preview={false}
           fallback={defaultImage}
+          width={330}
+          style={{ objectFit: 'cover' }}
         />
       </div>
       <div className='block textBox'>
