@@ -9,7 +9,7 @@ const sectionList = [
   {
     textBeforeImage: false,
     imageUrl: '/voter.svg',
-    title: 'Localisez vos équipements à tout instant',
+    title: 'Elect your candidates to designed post',
     content:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam quas omnis minus alias maiores doloribus cumque odio! Consectetur maiores voluptates quasi odio porro, soluta nesciunt eius. Consequuntur ipsamvoluptatibus nemo.',
   },
