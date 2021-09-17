@@ -1,3 +1,5 @@
+import { NextApiRequest } from 'next';
+
 export type DepartmentType =
   | 'MSP Department'
   | "Science de l'ingénieur Department"
@@ -16,3 +18,14 @@ export type LevelType =
   | 'Level 3'
   | 'Level 4'
   | 'Level 5';
+
+export type NextApiRequestWithFormData = NextApiRequest & {
+  file: {
+    fieldname: string;
+    originalname: string;
+    encoding: string;
+    mimetype: string;
+    path: string;
+    size: null;
+  };
+};
