@@ -31,6 +31,7 @@ export const ButtonOutline = styled.button`
   border: 2px solid #263238;
   &:hover {
     background-color: #263238;
+    border: 2px solid white;
     color: white;
   }
 `;
