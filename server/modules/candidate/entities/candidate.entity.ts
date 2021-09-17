@@ -31,6 +31,7 @@ export class CandidateEntity
       image: candidate.image,
       creation_date: candidate.creation_date,
       secret_code: candidate.secret_code,
+      password: candidate.password,
       voted: candidate.voted,
     });
 
