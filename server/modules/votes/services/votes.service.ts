@@ -2,10 +2,10 @@ import { VoteEntity } from '../entities/votes.entity';
 import { votesDbService } from './votesdb.service';
 
 class VotesService {
-  getAllPosts = async () => {
+  getAllVotes = async () => {
     return await votesDbService.getAll();
   };
-  addPost = async (vote: VoteEntity) => {
+  addVote = async (vote: VoteEntity) => {
     return await votesDbService.addVote(vote);
   };
 }
