@@ -5,7 +5,13 @@ import { addPost } from '../network/admin.network';
 
 type LayoutType = Parameters<typeof Form>[0]['layout'];
 
-export const PostForm = ({ closeModal }: { closeModal: () => void }) => {
+export const PostForm = ({
+  closeModal,
+  onAdd,
+}: {
+  closeModal: () => void;
+  onAdd: (post: PostEntity) => void;
+}) => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState<LayoutType>('vertical');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +35,7 @@ export const PostForm = ({ closeModal }: { closeModal: () => void }) => {
             duration: 10,
           });
           closeModal();
+          onAdd(response);
         } else {
           notification.error({
             message: 'Error',

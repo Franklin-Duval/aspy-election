@@ -20,13 +20,20 @@ export const PostPage = () => {
         filterFunction={(post: PostEntity, filterValue: string) =>
           post.name.toLowerCase().includes(filterValue)
         }
-        data={posts}
+        data={[...posts]}
         AddButton={
           <ButtonWithModal
             buttonText='Add a new Post'
             modalProps={{ title: 'Add a new Post' }}
           >
-            {(closeModal) => <PostForm closeModal={closeModal} />}
+            {(closeModal) => (
+              <PostForm
+                closeModal={closeModal}
+                onAdd={(post: PostEntity) => {
+                  setPosts([...posts, post]);
+                }}
+              />
+            )}
           </ButtonWithModal>
         }
       />
