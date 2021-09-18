@@ -3,4 +3,8 @@ export const API_ROUTES = {
     GET_ALL: '/api/voter',
     ADD: '/api/voter/add',
   },
+  CANDIDATES: {
+    GET_ALL: '/api/candidate',
+    ADD: '/api/candidate/add',
+  },
 };
