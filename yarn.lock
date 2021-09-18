@@ -426,6 +426,21 @@
   dependencies:
     "@types/node" "*"
 
+"@types/draft-js@*", "@types/draft-js@^0.11.5":
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.5.tgz#53e0c91b8c297b6ba88e6b1440a56efc81b6d70b"
+  integrity sha512-rf33PMmHMOcTR4HyUcdheTB+1Wpmj5bMLIEDSHoXMAYnkYPO58TLcUxYdDy5chrGyzwNrsFHxwFX2NvbEOQVWA==
+  dependencies:
+    "@types/react" "*"
+    immutable "~3.7.4"
+
+"@types/draftjs-to-html@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@types/draftjs-to-html/-/draftjs-to-html-0.8.1.tgz#0800a4f6ff19ece49b6a337bfa8b39ed3d08a5fa"
+  integrity sha512-NBkphQs+qZ/sAz/j1pCUaxkPAOx00LTsE88aMSSfcvK+UfCpjHJDqIMCkm6wKotuJvY5w0BtdRazQ0sAaXzPdg==
+  dependencies:
+    "@types/draft-js" "*"
+
 "@types/express-serve-static-core@^4.17.18":
   version "4.17.24"
   resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.24.tgz#ea41f93bf7e0d59cd5a76665068ed6aab6815c07"
@@ -510,7 +525,15 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
-"@types/react@17.0.21":
+"@types/react-draft-wysiwyg@^1.13.3":
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/@types/react-draft-wysiwyg/-/react-draft-wysiwyg-1.13.3.tgz#044806edfcd3302c1039dd767bcc06e1467f7d26"
+  integrity sha512-njzkDqwIrEDUWz7Xzn2grlghu2PLlNf9PfOyGjQpUMOw5hwMEI3aQ6D4GUXBfGXaMv2nuheO4lu7Gu0cak5vmw==
+  dependencies:
+    "@types/draft-js" "*"
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@17.0.21":
   version "17.0.21"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.21.tgz#069c43177cd419afaab5ce26bb4e9056549f7ea6"
   integrity sha512-GzzXCpOthOjXvrAUFQwU/svyxu658cwu00Q9ugujS4qc1zXgLFaO0kS2SLOaMWLt2Jik781yuHCWB7UcYdGAeQ==

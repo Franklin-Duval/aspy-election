@@ -31,8 +31,11 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/draft-js": "^0.11.5",
+    "@types/draftjs-to-html": "^0.8.1",
     "@types/gridfs-stream": "^0.5.35",
     "@types/react": "17.0.21",
+    "@types/react-draft-wysiwyg": "^1.13.3",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "typescript": "4.4.3"
