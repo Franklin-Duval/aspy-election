@@ -2,11 +2,13 @@ import { CandidateEntity } from 'server/modules/candidate/entities/candidate.ent
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
 import { customFetch, responseHandler } from 'src/shared/customFetch';
 
-export const fetchCandidates = () => {
+export const fetchCandidates = (): Promise<CandidateEntity[]> => {
   return customFetch.get(API_ROUTES.CANDIDATES.GET_ALL);
 };
 
-export const addCandidate = (candidateToCreate: CandidateEntity) => {
+export const addCandidate = (
+  candidateToCreate: CandidateEntity,
+): Promise<CandidateEntity> => {
   let formData = new FormData();
   formData.append('name', candidateToCreate.name);
   formData.append('surename', candidateToCreate.surename);
