@@ -1,3 +1,4 @@
+import { Button, Space } from 'antd';
 import { useEffect, useState } from 'react';
 import { PostEntity } from 'server/modules/post/entities/post.entity';
 import { ButtonWithModal } from 'src/modules/shared/ButtonWithModal/ButtonWithModal';
@@ -14,6 +15,10 @@ export const PostPage = () => {
 
   return (
     <Layout>
+      <Space>
+        <Button>View Stats</Button>
+        <Button>View Results</Button>
+      </Space>
       <h2>List of different posts in the bureau</h2>
       <DataTable<PostEntity>
         columns={postsColumns}
