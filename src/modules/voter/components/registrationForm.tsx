@@ -1,14 +1,17 @@
 /* eslint-disable no-unused-vars */
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Select, Upload } from 'antd';
+import { Button, Form, Input, notification, Select, Upload } from 'antd';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { VoterEntity } from 'server/modules/voter/entities/voter.entity';
+import { ROUTES } from 'src/routes';
 import { DEPARTMENTS, LEVELS } from 'src/shared/constants';
 import { addVoter } from '../network/voter.network';
 
 type LayoutType = Parameters<typeof Form>[0]['layout'];
 
 export const RegistrationForm = () => {
+  const router = useRouter();
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState<LayoutType>('vertical');
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +30,23 @@ export const RegistrationForm = () => {
         const postData = { ...data, image: profilePicture } as VoterEntity;
 
         const response = await addVoter(postData);
+        if (response._id) {
+          notification.success({
+            message: 'Success',
+            description:
+              'Your have been registered as a voter. Continue by going through the list of candidate',
+            duration: 10,
+          });
+        } else {
+          notification.error({
+            message: 'Error',
+            description: 'Sorry!!! An error has occured. Try again once more..',
+            duration: 10,
+          });
+        }
+
         setIsLoading(false);
+        router.push(ROUTES.VOTER.CANDIDATE_LIST);
       }}
     >
       <Form.Item name='upload' label='Profile picture'>
