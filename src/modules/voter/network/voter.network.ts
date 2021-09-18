@@ -2,11 +2,11 @@ import { VoterEntity } from 'server/modules/voter/entities/voter.entity';
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
 import { customFetch, responseHandler } from 'src/shared/customFetch';
 
-export const fetchVoters = () => {
+export const fetchVoters = (): Promise<VoterEntity[]> => {
   return customFetch.get(API_ROUTES.VOTERS.GET_ALL);
 };
 
-export const addVoter = (voterToCreate: VoterEntity) => {
+export const addVoter = (voterToCreate: VoterEntity): Promise<VoterEntity> => {
   let formData = new FormData();
   formData.append('name', voterToCreate.name);
   formData.append('surename', voterToCreate.surename);
