@@ -13,7 +13,7 @@ class VoterService {
       password: await EncryptionService.hashPassword(voter.password as string),
     };
     const instertedVoter = await voterDbService.addVoter(voterToAdd);
-    return this.getVoter(instertedVoter.insertedId.toHexString());
+    return await this.getVoter(instertedVoter.insertedId.toHexString());
   };
 
   getVoter = async (voterId: string) => {

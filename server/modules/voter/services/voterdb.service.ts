@@ -20,7 +20,7 @@ export class VoterDbService {
   getVoter = async (voterId: string) => {
     return await (await getDb())
       .collection(DATABASE_COLLECTIONS.VOTER)
-      .find({ _id: new ObjectId(voterId) });
+      .findOne({ _id: new ObjectId(voterId) });
   };
 }
 
