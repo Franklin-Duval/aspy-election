@@ -11,16 +11,16 @@ export class CandidateDbService {
       .toArray();
   };
 
-  addCandidate = async (voter: Omit<CandidateEntity, '_id'>) => {
+  addCandidate = async (candidate: Omit<CandidateEntity, '_id'>) => {
     return await (await getDb())
       .collection(DATABASE_COLLECTIONS.CANDIDATE)
-      .insertOne(voter);
+      .insertOne(candidate);
   };
 
-  getCandidate = async (voterId: string) => {
+  getCandidate = async (candidateId: string) => {
     return await (await getDb())
       .collection(DATABASE_COLLECTIONS.CANDIDATE)
-      .find({ _id: new ObjectId(voterId) });
+      .findOne({ _id: new ObjectId(candidateId) });
   };
 }
 

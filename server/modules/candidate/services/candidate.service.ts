@@ -17,7 +17,7 @@ class CandidateService {
     const instertedCandidate = await candidateDbService.addCandidate(
       candidateToAdd,
     );
-    return this.getCandidate(instertedCandidate.insertedId.toHexString());
+    return await this.getCandidate(instertedCandidate.insertedId.toHexString());
   };
 
   getCandidate = async (candidateId: string) => {
