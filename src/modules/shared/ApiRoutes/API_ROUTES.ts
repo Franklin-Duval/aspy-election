@@ -7,6 +7,10 @@ export const API_ROUTES = {
     GET_ALL: '/api/candidate',
     ADD: '/api/candidate/add',
   },
+  POSTS: {
+    GET_ALL: '/api/post',
+    ADD: '/api/post/add',
+  },
   IMAGES: {
     GET: (imageId: string) => `/api/images/${imageId}`,
   },
