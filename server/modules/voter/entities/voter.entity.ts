@@ -12,6 +12,7 @@ export interface VoterEntityJSON {
   image: string;
   creation_date: string;
   secret_code: string;
+  password?: string;
   voted: boolean;
 }
 
@@ -27,6 +28,7 @@ export class VoterEntity implements VoterEntityJSON {
   image: string;
   secret_code: string;
   creation_date: string;
+  password?: string;
   voted: boolean;
 
   constructor(voter: VoterEntityJSON) {
