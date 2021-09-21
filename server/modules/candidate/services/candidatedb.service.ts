@@ -1,4 +1,5 @@
 import { ObjectId } from 'mongodb';
+import { Application } from 'server/shared/customTypes';
 import { getDb } from 'server/shared/database';
 import { DATABASE_COLLECTIONS } from 'server/shared/databaseCollections';
 import { CandidateEntity } from '../entities/candidate.entity';
@@ -21,6 +22,21 @@ export class CandidateDbService {
     return await (await getDb())
       .collection(DATABASE_COLLECTIONS.CANDIDATE)
       .findOne({ _id: new ObjectId(candidateId) });
+  };
+
+  submitApplication = async (application: Application) => {
+    return await (await getDb())
+      .collection(DATABASE_COLLECTIONS.CANDIDATE)
+      .updateOne(
+        { _id: new ObjectId(application._id) },
+        {
+          $set: {
+            manifesto: application.manifesto,
+            planOfAction: application.planOfAction,
+            post: application.post,
+          },
+        },
+      );
   };
 }
 

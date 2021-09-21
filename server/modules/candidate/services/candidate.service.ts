@@ -1,4 +1,5 @@
 import { EncryptionService } from 'server/modules/ecryptionService/encryptionService';
+import { Application } from 'server/shared/customTypes';
 import { CandidateEntity } from '../entities/candidate.entity';
 import { candidateDbService } from './candidatedb.service';
 
@@ -22,6 +23,10 @@ class CandidateService {
 
   getCandidate = async (candidateId: string) => {
     return await candidateDbService.getCandidate(candidateId);
+  };
+
+  submitApplication = async (application: Application) => {
+    return await candidateDbService.submitApplication(application);
   };
 }
 
