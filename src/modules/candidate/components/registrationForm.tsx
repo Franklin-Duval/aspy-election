@@ -27,7 +27,12 @@ export const RegistrationForm = () => {
       onFinish={async (data) => {
         setIsLoading(true);
         const profilePicture = data.upload?.fileList[0]?.originFileObj;
-        const postData = { ...data, image: profilePicture } as CandidateEntity;
+        const postData = {
+          ...data,
+          image: profilePicture,
+          likes: [],
+          dislikes: [],
+        } as CandidateEntity;
 
         const response = await addCandidate(postData);
         if (response._id) {

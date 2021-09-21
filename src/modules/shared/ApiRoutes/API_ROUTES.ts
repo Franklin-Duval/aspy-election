@@ -9,6 +9,8 @@ export const API_ROUTES = {
     GET_ONE: (candidateId: string) => `/api/candidate/${candidateId}`,
     ADD: '/api/candidate/add',
     APPLICATION: '/api/candidate/application',
+    ADD_LIKE: '/api/candidate/addLike',
+    ADD_DISLIKE: '/api/candidate/addDislike',
   },
   POSTS: {
     GET_ALL: '/api/post',

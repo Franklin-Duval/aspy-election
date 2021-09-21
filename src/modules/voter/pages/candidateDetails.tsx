@@ -4,12 +4,14 @@ import parser from 'html-react-parser';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { FaAngleRight, FaHeart, FaHeartBroken } from 'react-icons/fa';
+import { FiHeart } from 'react-icons/fi';
 import { BeatLoader } from 'react-spinners';
 import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
 import { getCandidate } from 'src/modules/candidate/network/candidate.network';
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
 import { Layout } from 'src/modules/shared/Layout';
 import { defaultImage } from 'src/shared/defaultImage';
+import { addDislike, addLike } from '../network/voter.network';
 
 const CandidateDetailContainer = styled.div`
   padding-top: 30px;
@@ -92,15 +94,36 @@ export const CandidateDetails = () => {
                 <hr />
                 <Space size={20}>
                   <Tooltip title='Like'>
-                    <span className='like'>
-                      <FaHeart size={30} color='red' />
-                      <sub>0</sub>
+                    <span
+                      className='like'
+                      onClick={async () => {
+                        await addLike(
+                          candidate._id,
+                          '614582fa0c225f33028e96e7',
+                        ).then((data) => setCandidate(data));
+                      }}
+                    >
+                      {candidate.likes?.includes('614582fa0c225f33028e96e7') ? (
+                        <FaHeart size={30} color='red' />
+                      ) : (
+                        <FiHeart size={30} color='black' />
+                      )}
+
+                      <sub>{candidate.likes?.length || 0}</sub>
                     </span>
                   </Tooltip>
                   <Tooltip title='Dislike'>
-                    <span className='like'>
+                    <span
+                      className='like'
+                      onClick={async () => {
+                        await addDislike(
+                          candidate._id,
+                          '614582fa0c225f33028e96e7',
+                        ).then((data) => setCandidate(data));
+                      }}
+                    >
                       <FaHeartBroken size={30} color='red' />
-                      <sub>0</sub>
+                      <sub>{candidate.dislikes?.length || 0}</sub>
                     </span>
                   </Tooltip>
                 </Space>

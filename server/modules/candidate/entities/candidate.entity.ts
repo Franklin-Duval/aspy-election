@@ -7,6 +7,8 @@ interface CandidateEntityJSON extends VoterEntityJSON {
   planOfAction: string;
   manifesto: string;
   post: string;
+  likes?: string[];
+  dislikes?: string[];
   numberVotes: number;
 }
 
@@ -17,6 +19,8 @@ export class CandidateEntity
   planOfAction: string;
   manifesto: string;
   post: string;
+  likes?: string[];
+  dislikes?: string[];
   numberVotes: number;
   constructor(candidate: CandidateEntityJSON) {
     super({
@@ -38,6 +42,8 @@ export class CandidateEntity
     this.planOfAction = candidate.planOfAction;
     this.manifesto = candidate.manifesto;
     this.post = candidate.post;
+    this.likes = candidate.likes;
+    this.dislikes = candidate.dislikes;
     this.numberVotes = candidate.numberVotes;
   }
 }
