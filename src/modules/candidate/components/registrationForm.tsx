@@ -30,8 +30,6 @@ export const RegistrationForm = () => {
         const postData = {
           ...data,
           image: profilePicture,
-          likes: [],
-          dislikes: [],
         } as CandidateEntity;
 
         const response = await addCandidate(postData);

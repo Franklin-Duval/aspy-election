@@ -25,10 +25,13 @@ export class CandidateDbService {
       .collection(DATABASE_COLLECTIONS.CANDIDATE)
       .findOne({ _id: new ObjectId(candidateId) })) as CandidateEntity;
 
-    const post = (await connection
-      .collection(DATABASE_COLLECTIONS.POST)
-      .findOne({ _id: new ObjectId(candidate.post) })) as PostEntity;
-    candidate.post = post.name;
+    if (candidate.post) {
+      const post = (await connection
+        .collection(DATABASE_COLLECTIONS.POST)
+        .findOne({ _id: new ObjectId(candidate.post) })) as PostEntity;
+      candidate.post = post.name;
+      return candidate;
+    }
     return candidate;
   };
 

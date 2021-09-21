@@ -44,6 +44,8 @@ apiRoute.post(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
     creation_date: new Date().toISOString(),
     voted: false,
     image: fileUploaded?._id.toHexString(),
+    likes: [],
+    dislikes: [],
   } as CandidateEntity;
 
   const result = await candidateService.addCandidate(candidateToCreate);
