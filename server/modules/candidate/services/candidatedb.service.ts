@@ -1,4 +1,5 @@
 import { ObjectId } from 'mongodb';
+import { PostEntity } from 'server/modules/post/entities/post.entity';
 import { Application } from 'server/shared/customTypes';
 import { getDb } from 'server/shared/database';
 import { DATABASE_COLLECTIONS } from 'server/shared/databaseCollections';
@@ -19,9 +20,16 @@ export class CandidateDbService {
   };
 
   getCandidate = async (candidateId: string) => {
-    return await (await getDb())
+    const connection = await getDb();
+    const candidate = (await connection
       .collection(DATABASE_COLLECTIONS.CANDIDATE)
-      .findOne({ _id: new ObjectId(candidateId) });
+      .findOne({ _id: new ObjectId(candidateId) })) as CandidateEntity;
+
+    const post = (await connection
+      .collection(DATABASE_COLLECTIONS.POST)
+      .findOne({ _id: new ObjectId(candidate.post) })) as PostEntity;
+    candidate.post = post.name;
+    return candidate;
   };
 
   submitApplication = async (application: Application) => {
