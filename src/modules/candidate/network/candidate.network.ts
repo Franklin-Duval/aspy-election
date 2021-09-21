@@ -1,4 +1,5 @@
 import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
+import { Application } from 'server/shared/customTypes';
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
 import { customFetch, responseHandler } from 'src/shared/customFetch';
 
@@ -25,4 +26,8 @@ export const addCandidate = (
     method: 'post',
     body: formData,
   }).then(responseHandler);
+};
+
+export const submitApplication = (application: Application) => {
+  return customFetch.post(API_ROUTES.CANDIDATES.APPLICATION, application);
 };
