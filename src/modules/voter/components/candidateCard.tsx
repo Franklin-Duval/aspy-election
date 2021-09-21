@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 import { Card, Image, Tooltip } from 'antd';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { FaBook, FaHeart, FaHeartBroken } from 'react-icons/fa';
+import { FiHeart } from 'react-icons/fi';
 import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
 import { ROUTES } from 'src/routes';
 import { defaultImage } from 'src/shared/defaultImage';
+import { addDislike, addLike } from '../network/voter.network';
 
 const CardContainer = styled.div`
   margin: 5px;
@@ -38,6 +41,8 @@ export const CandidateCard = ({
   candidate: CandidateEntity;
 }) => {
   const router = useRouter();
+  const [likes, setLikes] = useState(candidate.likes);
+  const [dislikes, setDislikes] = useState(candidate.dislikes);
   return (
     <CardContainer>
       <Card
@@ -52,13 +57,41 @@ export const CandidateCard = ({
               }
             />
           </Tooltip>,
-          <span key='heart'>
-            <FaHeart size={20} color='red' />
-            <sub style={{ color: 'black', fontSize: 12 }}>0</sub>
+          <span
+            key='heart'
+            onClick={async () => {
+              await addLike(candidate._id, '614582fa0c225f33028e96e7').then(
+                (data: CandidateEntity) => {
+                  setLikes(data.likes);
+                  setDislikes(data.dislikes);
+                },
+              );
+            }}
+          >
+            {candidate.likes?.includes('614582fa0c225f33028e96e7') ? (
+              <FaHeart size={20} color='red' />
+            ) : (
+              <FiHeart size={20} color='black' />
+            )}
+            <sub style={{ color: 'black', fontSize: 12 }}>
+              {likes?.length || 0}
+            </sub>
           </span>,
-          <span key='heartb'>
+          <span
+            key='heartb'
+            onClick={async () => {
+              await addDislike(candidate._id, '614582fa0c225f33028e96e7').then(
+                (data: CandidateEntity) => {
+                  setLikes(data.likes);
+                  setDislikes(data.dislikes);
+                },
+              );
+            }}
+          >
             <FaHeartBroken size={20} color='red' />
-            <sub style={{ color: 'black', fontSize: 12 }}>0</sub>
+            <sub style={{ color: 'black', fontSize: 12 }}>
+              {dislikes?.length || 0}
+            </sub>
           </span>,
         ]}
         cover={
