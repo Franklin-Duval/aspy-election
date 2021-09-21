@@ -1,51 +1,32 @@
+import { useEffect, useState } from 'react';
+import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
+import { PostEntity } from 'server/modules/post/entities/post.entity';
+import { fetchPosts } from 'src/modules/admin/network/admin.network';
+import { fetchCandidates } from 'src/modules/candidate/network/candidate.network';
 import { Layout } from 'src/modules/shared/Layout';
 import { DisplayPost } from '../components/displayPost';
 
 export const CandidateList = () => {
+  const [posts, setPosts] = useState<PostEntity[]>([]);
+  const [candidates, setCandidates] = useState<CandidateEntity[]>([]);
+
+  useEffect(() => {
+    fetchPosts().then((posts) => setPosts(posts));
+    fetchCandidates().then((candidates) => setCandidates(candidates));
+  }, []);
+
   return (
     <Layout>
       <h2>List of all Candidates</h2>
-      <DisplayPost
-        post='President'
-        candidates={[
-          {
-            secret_code: '5159',
-            contact: '658605674',
-            department: 'Art Numerique Department',
-            email: 'ralph.jr.nj@gmail.com',
-            _id: '14',
-            image: '614578d30c225f33028e96cf',
-            level: 'Level 1',
-            matricule: '19p230',
-            name: 'Nonga fidolin',
-            surename: 'Nonga fidolin',
-            numberVotes: 82,
-            planOfAction: 'test',
-            post: 'test',
-            voted: false,
-            manifesto: 'test',
-            creation_date: '',
-          },
-          {
-            secret_code: '5159',
-            contact: '658605674',
-            department: 'Art Numerique Department',
-            email: 'ralph.jr.nj@gmail.com',
-            _id: '14',
-            image: '61457b740c225f33028e96e1',
-            level: 'Level 1',
-            matricule: '19p230',
-            name: 'Nonga fidolin',
-            surename: 'Nonga fidolin',
-            numberVotes: 82,
-            planOfAction: 'test',
-            post: 'test',
-            voted: false,
-            manifesto: 'test',
-            creation_date: '',
-          },
-        ]}
-      />
+      {posts.map((post) => (
+        <DisplayPost
+          key={post._id}
+          post={post.name}
+          candidates={candidates.filter(
+            (candidate) => candidate.post == post._id,
+          )}
+        />
+      ))}
     </Layout>
   );
 };
