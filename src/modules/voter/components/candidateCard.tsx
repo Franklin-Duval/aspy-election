@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { Card, Image, Tooltip } from 'antd';
+import { useRouter } from 'next/router';
 import { FaBook, FaHeart, FaHeartBroken } from 'react-icons/fa';
 import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
+import { ROUTES } from 'src/routes';
 import { defaultImage } from 'src/shared/defaultImage';
 
 const CardContainer = styled.div`
@@ -35,6 +37,7 @@ export const CandidateCard = ({
 }: {
   candidate: CandidateEntity;
 }) => {
+  const router = useRouter();
   return (
     <CardContainer>
       <Card
@@ -42,15 +45,20 @@ export const CandidateCard = ({
         style={{ width: 300 }}
         actions={[
           <Tooltip key='book' title='View details'>
-            <FaBook size={20} />
+            <FaBook
+              size={20}
+              onClick={() =>
+                router.push(ROUTES.VOTER.CANDIDATE_DETAILS(candidate._id))
+              }
+            />
           </Tooltip>,
           <span key='heart'>
             <FaHeart size={20} color='red' />
-            <sub style={{ color: 'black', fontSize: 12 }}>4</sub>
+            <sub style={{ color: 'black', fontSize: 12 }}>0</sub>
           </span>,
           <span key='heartb'>
             <FaHeartBroken size={20} color='red' />
-            <sub style={{ color: 'black', fontSize: 12 }}>1</sub>
+            <sub style={{ color: 'black', fontSize: 12 }}>0</sub>
           </span>,
         ]}
         cover={
