@@ -24,3 +24,13 @@ export const addVoter = (voterToCreate: VoterEntity): Promise<VoterEntity> => {
     body: formData,
   }).then(responseHandler);
 };
+
+export const addLike = (candidateId: string, voterId: string) => {
+  const data = { candidateId, voterId };
+  return customFetch.post(API_ROUTES.CANDIDATES.ADD_LIKE, data);
+};
+
+export const addDislike = (candidateId: string, voterId: string) => {
+  const data = { candidateId, voterId };
+  return customFetch.post(API_ROUTES.CANDIDATES.ADD_DISLIKE, data);
+};
