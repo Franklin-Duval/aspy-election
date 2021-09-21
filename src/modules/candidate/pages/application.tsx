@@ -1,10 +1,9 @@
-import { Button, notification, Select } from 'antd';
+import { Button, Input, notification, Select } from 'antd';
 import { useEffect, useState } from 'react';
 import { PostEntity } from 'server/modules/post/entities/post.entity';
 import { Application } from 'server/shared/customTypes';
 import { fetchPosts } from 'src/modules/admin/network/admin.network';
 import { Layout } from 'src/modules/shared/Layout';
-import { RichEditor } from 'src/modules/shared/RichEditor';
 import { submitApplication } from '../network/candidate.network';
 
 export const CandidateApplication = () => {
@@ -16,7 +15,6 @@ export const CandidateApplication = () => {
 
   useEffect(() => {
     fetchPosts().then((posts) => setPosts(posts));
-    alert('Application');
   }, []);
 
   return (
@@ -37,10 +35,20 @@ export const CandidateApplication = () => {
       </Select>
 
       <h2>Manifesto</h2>
-      <RichEditor content={manifesto} setContent={setManifesto} />
+      {/* <RichEditor content={manifesto} setContent={setManifesto} /> */}
+      <Input.TextArea
+        rows={10}
+        value={manifesto}
+        onChange={(value) => setManifesto(value?.toString() as string)}
+      />
 
       <h2>Plan of Action</h2>
-      <RichEditor content={planOfAction} setContent={setPlanOfAction} />
+      {/* <RichEditor content={planOfAction} setContent={setPlanOfAction} /> */}
+      <Input.TextArea
+        rows={10}
+        value={planOfAction}
+        onChange={(value) => setPlanOfAction(value?.toString() as string)}
+      />
 
       <Button
         type='primary'

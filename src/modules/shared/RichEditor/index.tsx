@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactQuill from 'react-quill';
 
 export const RichEditor = ({
@@ -8,9 +8,6 @@ export const RichEditor = ({
   content: string;
   setContent: (value: string) => void;
 }) => {
-  useEffect(() => {
-    alert('Richeditor');
-  }, []);
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
