@@ -31,3 +31,7 @@ export const addCandidate = (
 export const submitApplication = (application: Application) => {
   return customFetch.post(API_ROUTES.CANDIDATES.APPLICATION, application);
 };
+
+export const getCandidate = (candidateId: string): Promise<CandidateEntity> => {
+  return customFetch.get(API_ROUTES.CANDIDATES.GET_ONE(candidateId));
+};
