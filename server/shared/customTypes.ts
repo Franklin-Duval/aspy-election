@@ -29,3 +29,10 @@ export type NextApiRequestWithFormData = NextApiRequest & {
     size: null;
   };
 };
+
+export type Application = {
+  _id: string;
+  planOfAction: string;
+  manifesto: string;
+  post: string;
+};
