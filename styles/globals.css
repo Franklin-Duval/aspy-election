@@ -1,4 +1,5 @@
 @import '~antd/dist/antd.css';
+@import '~react-quill/dist/quill.snow.css';
 
 html,
 body {

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 
 export const RichEditor = ({
   content,
@@ -9,6 +8,9 @@ export const RichEditor = ({
   content: string;
   setContent: (value: string) => void;
 }) => {
+  useEffect(() => {
+    alert('Richeditor');
+  }, []);
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],

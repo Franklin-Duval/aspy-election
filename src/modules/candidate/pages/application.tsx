@@ -16,6 +16,7 @@ export const CandidateApplication = () => {
 
   useEffect(() => {
     fetchPosts().then((posts) => setPosts(posts));
+    alert('Application');
   }, []);
 
   return (
