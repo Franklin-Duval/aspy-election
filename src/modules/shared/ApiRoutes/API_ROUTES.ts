@@ -6,6 +6,7 @@ export const API_ROUTES = {
   CANDIDATES: {
     GET_ALL: '/api/candidate',
     ADD: '/api/candidate/add',
+    APPLICATION: '/api/candidate/application',
   },
   POSTS: {
     GET_ALL: '/api/post',
