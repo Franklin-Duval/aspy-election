@@ -28,6 +28,16 @@ class CandidateService {
   submitApplication = async (application: Application) => {
     return await candidateDbService.submitApplication(application);
   };
+
+  addLike = async (candidateId: string, voterId: string) => {
+    await candidateDbService.addLike(candidateId, voterId);
+    return await this.getCandidate(candidateId);
+  };
+
+  addDislike = async (candidateId: string, voterId: string) => {
+    await candidateDbService.addDislike(candidateId, voterId);
+    return await this.getCandidate(candidateId);
+  };
 }
 
 export const candidateService = new CandidateService();

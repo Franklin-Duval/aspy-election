@@ -46,6 +46,58 @@ export class CandidateDbService {
         },
       );
   };
+
+  addLike = async (candidateId: string, voterId: string) => {
+    const connection = await getDb();
+    const candidate = (await connection
+      .collection(DATABASE_COLLECTIONS.CANDIDATE)
+      .findOne({ _id: new ObjectId(candidateId) })) as CandidateEntity;
+    let likes = candidate.likes;
+    let dislikes = candidate.dislikes;
+    if (!likes?.includes(voterId)) {
+      if (dislikes?.includes(voterId)) {
+        dislikes.splice(dislikes.indexOf(voterId), 1);
+      }
+      likes?.push(voterId);
+    }
+    return await connection
+      .collection(DATABASE_COLLECTIONS.CANDIDATE)
+      .updateOne(
+        { _id: new ObjectId(candidateId) },
+        {
+          $set: {
+            likes: likes,
+            dislikes: dislikes,
+          },
+        },
+      );
+  };
+
+  addDislike = async (candidateId: string, voterId: string) => {
+    const connection = await getDb();
+    const candidate = (await connection
+      .collection(DATABASE_COLLECTIONS.CANDIDATE)
+      .findOne({ _id: new ObjectId(candidateId) })) as CandidateEntity;
+    let likes = candidate.likes;
+    let dislikes = candidate.dislikes;
+    if (!dislikes?.includes(voterId)) {
+      if (likes?.includes(voterId)) {
+        likes.splice(likes.indexOf(voterId), 1);
+      }
+      dislikes?.push(voterId);
+    }
+    return await connection
+      .collection(DATABASE_COLLECTIONS.CANDIDATE)
+      .updateOne(
+        { _id: new ObjectId(candidateId) },
+        {
+          $set: {
+            likes: likes,
+            dislikes: dislikes,
+          },
+        },
+      );
+  };
 }
 
 export const candidateDbService = new CandidateDbService();
