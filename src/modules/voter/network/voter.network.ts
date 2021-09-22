@@ -1,4 +1,5 @@
 import { VoterEntity } from 'server/modules/voter/entities/voter.entity';
+import { VoteEntity } from 'server/modules/votes/entities/votes.entity';
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
 import { customFetch, responseHandler } from 'src/shared/customFetch';
 
@@ -33,4 +34,8 @@ export const addLike = (candidateId: string, voterId: string) => {
 export const addDislike = (candidateId: string, voterId: string) => {
   const data = { candidateId, voterId };
   return customFetch.post(API_ROUTES.CANDIDATES.ADD_DISLIKE, data);
+};
+
+export const addVotes = (votes: VoteEntity[]) => {
+  return customFetch.post(API_ROUTES.VOTES.ADD_MULTIPLE, votes);
 };
