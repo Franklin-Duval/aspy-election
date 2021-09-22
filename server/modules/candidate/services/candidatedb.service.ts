@@ -101,6 +101,12 @@ export class CandidateDbService {
         },
       );
   };
+
+  getCandidateByMatricule = async (matricule: string) => {
+    return await (await getDb())
+      .collection<CandidateEntity>(DATABASE_COLLECTIONS.CANDIDATE)
+      .findOne({ matricule: matricule });
+  };
 }
 
 export const candidateDbService = new CandidateDbService();

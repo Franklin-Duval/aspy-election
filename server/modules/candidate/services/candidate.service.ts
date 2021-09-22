@@ -38,6 +38,22 @@ class CandidateService {
     await candidateDbService.addDislike(candidateId, voterId);
     return await this.getCandidate(candidateId);
   };
+
+  authenticate = async (matricule: string, password: string) => {
+    const candidate = await candidateDbService.getCandidateByMatricule(
+      matricule,
+    );
+    if (candidate) {
+      const isPasswordTheSame = await EncryptionService.comparePassword(
+        password,
+        candidate.password as string,
+      );
+      if (isPasswordTheSame) {
+        return candidate;
+      }
+    }
+    return undefined;
+  };
 }
 
 export const candidateService = new CandidateService();
