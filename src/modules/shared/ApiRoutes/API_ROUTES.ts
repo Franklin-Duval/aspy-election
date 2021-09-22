@@ -16,6 +16,9 @@ export const API_ROUTES = {
     GET_ALL: '/api/post',
     ADD: '/api/post/add',
   },
+  VOTES: {
+    ADD_MULTIPLE: '/api/vote/addMultiple',
+  },
   IMAGES: {
     GET: (imageId: string) => `/api/images/${imageId}`,
   },
