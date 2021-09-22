@@ -39,7 +39,7 @@ export const CandidateApplication = () => {
       <Input.TextArea
         rows={10}
         value={manifesto}
-        onChange={(value) => setManifesto(value?.toString() as string)}
+        onChange={(event) => setManifesto(event.target.value)}
       />
 
       <h2>Plan of Action</h2>
@@ -47,7 +47,7 @@ export const CandidateApplication = () => {
       <Input.TextArea
         rows={10}
         value={planOfAction}
-        onChange={(value) => setPlanOfAction(value?.toString() as string)}
+        onChange={(event) => setPlanOfAction(event.target.value)}
       />
 
       <Button
@@ -57,7 +57,7 @@ export const CandidateApplication = () => {
         onClick={async () => {
           setIsLoading(true);
           const dataToPost: Application = {
-            _id: '61457b740c225f33028e96e4',
+            _id: '614a2b2117215399af0355ee',
             manifesto: manifesto,
             planOfAction: planOfAction,
             post: postId,
