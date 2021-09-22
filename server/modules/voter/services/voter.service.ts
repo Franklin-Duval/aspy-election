@@ -19,6 +19,20 @@ class VoterService {
   getVoter = async (voterId: string) => {
     return await voterDbService.getVoter(voterId);
   };
+
+  authenticate = async (matricule: string, password: string) => {
+    const voter = await voterDbService.getVoterByMatricule(matricule);
+    if (voter) {
+      const isPasswordTheSame = await EncryptionService.comparePassword(
+        password,
+        voter.password as string,
+      );
+      if (isPasswordTheSame) {
+        return voter;
+      }
+    }
+    return undefined;
+  };
 }
 
 export const voterService = new VoterService();
