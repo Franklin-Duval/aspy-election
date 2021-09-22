@@ -15,6 +15,12 @@ export class VotesDbService {
       .collection(DATABASE_COLLECTIONS.VOTE)
       .insertOne(vote);
   };
+
+  addMultipleVote = async (votes: VoteEntity[]) => {
+    return await (await getDb())
+      .collection(DATABASE_COLLECTIONS.VOTE)
+      .insertMany(votes as []);
+  };
 }
 
 export const votesDbService = new VotesDbService();

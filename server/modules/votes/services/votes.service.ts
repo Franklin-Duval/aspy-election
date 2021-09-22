@@ -8,6 +8,9 @@ class VotesService {
   addVote = async (vote: VoteEntity) => {
     return await votesDbService.addVote(vote);
   };
+  addMultipleVote = async (vote: VoteEntity[]) => {
+    return await votesDbService.addMultipleVote(vote);
+  };
 }
 
 export const votesService = new VotesService();
