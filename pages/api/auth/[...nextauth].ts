@@ -57,6 +57,7 @@ const options: NextAuthOptions = {
         token.matricule = user.matricule;
         token.voted = user.voted;
         token.role = user.likes ? 'candidate' : 'voter';
+        token.apply = user.planOfAction ? false : true;
       }
       return token;
     },
