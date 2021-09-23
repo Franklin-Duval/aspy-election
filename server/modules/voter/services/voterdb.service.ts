@@ -22,6 +22,12 @@ export class VoterDbService {
       .collection(DATABASE_COLLECTIONS.VOTER)
       .findOne({ _id: new ObjectId(voterId) });
   };
+
+  getVoterByMatricule = async (matricule: string) => {
+    return await (await getDb())
+      .collection<VoterEntity>(DATABASE_COLLECTIONS.VOTER)
+      .findOne({ matricule: matricule });
+  };
 }
 
 export const voterDbService = new VoterDbService();
