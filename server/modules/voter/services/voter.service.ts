@@ -33,6 +33,10 @@ class VoterService {
     }
     return undefined;
   };
+
+  finishVote = async (voterId: string) => {
+    return await voterDbService.finishVote(voterId);
+  };
 }
 
 export const voterService = new VoterService();

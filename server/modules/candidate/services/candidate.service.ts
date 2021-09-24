@@ -54,6 +54,10 @@ class CandidateService {
     }
     return undefined;
   };
+
+  addNumberVotes = async (candidateId: string) => {
+    return await candidateDbService.addNumberVotes(candidateId);
+  };
 }
 
 export const candidateService = new CandidateService();

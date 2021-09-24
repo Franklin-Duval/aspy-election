@@ -107,6 +107,17 @@ export class CandidateDbService {
       .collection<CandidateEntity>(DATABASE_COLLECTIONS.CANDIDATE)
       .findOne({ matricule: matricule });
   };
+
+  addNumberVotes = async (candidateId: string) => {
+    const candidate = await this.getCandidate(candidateId);
+    const numberVotes = candidate.numberVotes || 0;
+    return await (await getDb())
+      .collection<CandidateEntity>(DATABASE_COLLECTIONS.CANDIDATE)
+      .updateOne(
+        { _id: new ObjectId(candidateId) },
+        { $set: { numberVotes: numberVotes + 1 } },
+      );
+  };
 }
 
 export const candidateDbService = new CandidateDbService();

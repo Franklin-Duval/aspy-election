@@ -28,6 +28,12 @@ export class VoterDbService {
       .collection<VoterEntity>(DATABASE_COLLECTIONS.VOTER)
       .findOne({ matricule: matricule });
   };
+
+  finishVote = async (voterId: string) => {
+    return await (await getDb())
+      .collection<VoterEntity>(DATABASE_COLLECTIONS.VOTER)
+      .updateOne({ _id: new ObjectId(voterId) }, { $set: { voted: true } });
+  };
 }
 
 export const voterDbService = new VoterDbService();
