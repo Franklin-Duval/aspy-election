@@ -36,3 +36,13 @@ export type Application = {
   manifesto: string;
   post: string;
 };
+
+export type ConnectedUser = {
+  _id: string;
+  name: string;
+  surename: string;
+  matricule: string;
+  voted: boolean;
+  role: 'candidate' | 'voter';
+  apply: boolean;
+};
