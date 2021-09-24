@@ -1,8 +1,10 @@
 import { Button, Form, notification, Select } from 'antd';
+import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
 import { PostEntity } from 'server/modules/post/entities/post.entity';
+import { ConnectedUser } from 'server/shared/customTypes';
 import { fetchPosts } from 'src/modules/admin/network/admin.network';
 import { fetchCandidates } from 'src/modules/candidate/network/candidate.network';
 import { Layout } from 'src/modules/shared/Layout';
@@ -13,16 +15,24 @@ type LayoutType = Parameters<typeof Form>[0]['layout'];
 
 export const VotePage = () => {
   const router = useRouter();
+  const [session, loading] = useSession();
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState<LayoutType>('vertical');
   const [posts, setPosts] = useState<PostEntity[]>([]);
   const [candidates, setCandidates] = useState<CandidateEntity[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [connectedUser, setConnectedUser] = useState<ConnectedUser>();
 
   useEffect(() => {
     fetchPosts().then((posts) => setPosts(posts));
     fetchCandidates().then((candidates) => setCandidates(candidates));
   }, []);
+
+  useEffect(() => {
+    if (session) {
+      setConnectedUser(session.user as ConnectedUser);
+    }
+  }, [session]);
 
   return (
     <Layout>
@@ -39,7 +49,7 @@ export const VotePage = () => {
           let votes: any[] = [];
           Object.keys(data).map((postId) => {
             votes.push({
-              voter: '614582fa0c225f33028e96e7',
+              voter: connectedUser?._id as string,
               post: postId,
               candidate: data[postId],
               voteDate: new Date().toISOString(),
