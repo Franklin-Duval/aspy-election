@@ -46,3 +46,7 @@ export type ConnectedUser = {
   role: 'candidate' | 'voter';
   apply: boolean;
 };
+
+export type ErrorType = {
+  message: string;
+};
