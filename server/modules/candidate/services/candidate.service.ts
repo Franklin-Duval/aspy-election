@@ -1,5 +1,5 @@
 import { EncryptionService } from 'server/modules/ecryptionService/encryptionService';
-import { Application } from 'server/shared/customTypes';
+import { Application, ErrorType } from 'server/shared/customTypes';
 import { CandidateEntity } from '../entities/candidate.entity';
 import { candidateDbService } from './candidatedb.service';
 
@@ -9,6 +9,24 @@ class CandidateService {
   };
 
   addCandidate = async (candidate: CandidateEntity) => {
+    // check if voter with matricule exists
+    const candidateExists = await this.checkCandidateExists(
+      candidate.matricule,
+    );
+    if (candidateExists) {
+      return {
+        message: 'A user with this matricule already exists!!!',
+      } as ErrorType;
+    }
+    // check if candidate with matricule exists
+    const voterExists = await candidateService.checkCandidateExists(
+      candidate.matricule,
+    );
+    if (voterExists) {
+      return {
+        message: 'A user with this matricule already exists!!!',
+      } as ErrorType;
+    }
     const candidateToAdd = {
       ...candidate,
       password: await EncryptionService.hashPassword(
@@ -21,8 +39,20 @@ class CandidateService {
     return await this.getCandidate(instertedCandidate.insertedId.toHexString());
   };
 
+  checkCandidateExists = async (matricule: string) => {
+    const voter = await candidateDbService.getCandidateByMatricule(matricule);
+    if (voter) {
+      return true;
+    }
+    return false;
+  };
+
   getCandidate = async (candidateId: string) => {
     return await candidateDbService.getCandidate(candidateId);
+  };
+
+  getCandidateByMatricule = async (matricule: string) => {
+    return await candidateDbService.getCandidateByMatricule(matricule);
   };
 
   submitApplication = async (application: Application) => {
