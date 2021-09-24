@@ -9,6 +9,7 @@ import { fetchPosts } from 'src/modules/admin/network/admin.network';
 import { fetchCandidates } from 'src/modules/candidate/network/candidate.network';
 import { Layout } from 'src/modules/shared/Layout';
 import { ROUTES } from 'src/routes';
+import { PRIMARY } from 'src/shared/colors';
 import { addVotes } from '../network/voter.network';
 
 type LayoutType = Parameters<typeof Form>[0]['layout'];
@@ -105,7 +106,16 @@ export const VotePage = () => {
         ))}
 
         <Form.Item>
-          <Button type='primary' htmlType='submit' loading={isLoading}>
+          <Button
+            type='primary'
+            htmlType='submit'
+            loading={isLoading}
+            style={{
+              width: '100%',
+              backgroundColor: PRIMARY,
+              borderColor: 'transparent',
+            }}
+          >
             Submit
           </Button>
         </Form.Item>
