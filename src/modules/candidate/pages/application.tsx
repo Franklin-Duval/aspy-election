@@ -1,22 +1,34 @@
 import { Button, Input, notification, Select } from 'antd';
+import { useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { PostEntity } from 'server/modules/post/entities/post.entity';
-import { Application } from 'server/shared/customTypes';
+import { Application, ConnectedUser } from 'server/shared/customTypes';
 import { fetchPosts } from 'src/modules/admin/network/admin.network';
 import { CandidateGuard } from 'src/modules/shared/AuthGuard';
 import { Layout } from 'src/modules/shared/Layout';
+import { PRIMARY } from 'src/shared/colors';
 import { submitApplication } from '../network/candidate.network';
 
 export const CandidateApplication = () => {
+  const router = useRouter();
+  const [session, loading] = useSession();
   const [manifesto, setManifesto] = useState('');
   const [planOfAction, setPlanOfAction] = useState('');
   const [posts, setPosts] = useState<PostEntity[]>([]);
   const [postId, setPostId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [connectedUser, setConnectedUser] = useState<ConnectedUser>();
 
   useEffect(() => {
     fetchPosts().then((posts) => setPosts(posts));
   }, []);
+
+  useEffect(() => {
+    if (session) {
+      setConnectedUser(session.user as ConnectedUser);
+    }
+  }, [session]);
 
   return (
     <Layout>
@@ -56,10 +68,16 @@ export const CandidateApplication = () => {
           type='primary'
           size='large'
           loading={isLoading}
+          style={{
+            marginTop: 20,
+            width: '100%',
+            backgroundColor: PRIMARY,
+            borderColor: 'transparent',
+          }}
           onClick={async () => {
             setIsLoading(true);
             const dataToPost: Application = {
-              _id: '614a2b2117215399af0355ee',
+              _id: connectedUser?._id as string,
               manifesto: manifesto,
               planOfAction: planOfAction,
               post: postId,
@@ -70,6 +88,7 @@ export const CandidateApplication = () => {
                   message: 'Success',
                   description: 'Your application has been registered',
                 });
+                router.back();
               }
             });
             setIsLoading(false);
