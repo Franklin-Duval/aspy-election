@@ -90,6 +90,7 @@ const TopNavBarContainer = styled.div`
 `;
 
 const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
+  const router = useRouter();
   return (
     <div className={closeMenu ? 'menu-linkContainer' : 'linkContainer'}>
       <NavLink href='#presentation' onClick={closeMenu}>
@@ -98,8 +99,8 @@ const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
       <NavLink href='#contact' onClick={closeMenu}>
         Contact
       </NavLink>
-      <Button onClick={() => signIn('Custom_sigin')}>Login</Button>
-      <ButtonOutline onClick={() => signIn('Custom_sigin')}>
+      <Button onClick={() => signIn('credentials')}>Login</Button>
+      <ButtonOutline onClick={() => router.push(ROUTES.VOTER.REGISTRATION)}>
         Registration
       </ButtonOutline>
     </div>

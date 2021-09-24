@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { Space } from 'antd';
 import { signIn } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import { ROUTES } from 'src/routes';
 import { ButtonOutline } from '../../styles/Button';
 
 const BannerContainer = styled.div`
@@ -41,15 +43,16 @@ export const Banner = ({
   title: string;
   description: string;
 }) => {
+  const router = useRouter();
   return (
     <BannerContainer>
       <h1 className='title'>{title}</h1>
       <p className='description'>{description}</p>
       <Space>
-        <ButtonOutline onClick={() => signIn('Custom_sigin')}>
+        <ButtonOutline onClick={() => signIn('credentials')}>
           Login
         </ButtonOutline>
-        <ButtonOutline onClick={() => signIn('Custom_sigin')}>
+        <ButtonOutline onClick={() => router.push(ROUTES.VOTER.REGISTRATION)}>
           Registration
         </ButtonOutline>
       </Space>
