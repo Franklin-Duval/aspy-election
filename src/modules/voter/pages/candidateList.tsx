@@ -53,8 +53,8 @@ export const CandidateList = () => {
   return (
     <Layout>
       <CandidateGuard>
-        <ApplicationContainer>
-          {connectedUser?.apply && (
+        {connectedUser?.apply && (
+          <ApplicationContainer>
             <div>
               <h2>Complete your application to a given post</h2>
               <Button
@@ -69,8 +69,8 @@ export const CandidateList = () => {
                 Application
               </Button>
             </div>
-          )}
-        </ApplicationContainer>
+          </ApplicationContainer>
+        )}
       </CandidateGuard>
       <h2>List of all Candidates</h2>
       {posts.map((post) => (
