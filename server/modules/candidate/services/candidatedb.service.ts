@@ -118,6 +118,12 @@ export class CandidateDbService {
         { $set: { numberVotes: numberVotes + 1 } },
       );
   };
+
+  finishVote = async (voterId: string) => {
+    return await (await getDb())
+      .collection<CandidateEntity>(DATABASE_COLLECTIONS.CANDIDATE)
+      .updateOne({ _id: new ObjectId(voterId) }, { $set: { voted: true } });
+  };
 }
 
 export const candidateDbService = new CandidateDbService();
