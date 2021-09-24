@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 import { Card, Image, Tooltip } from 'antd';
+import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBook, FaHeart, FaHeartBroken } from 'react-icons/fa';
 import { FiHeart } from 'react-icons/fi';
 import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
+import { ConnectedUser } from 'server/shared/customTypes';
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
 import { ROUTES } from 'src/routes';
 import { defaultImage } from 'src/shared/defaultImage';
@@ -41,8 +43,17 @@ export const CandidateCard = ({
   candidate: CandidateEntity;
 }) => {
   const router = useRouter();
+  const [session, loading] = useSession();
   const [likes, setLikes] = useState(candidate.likes);
   const [dislikes, setDislikes] = useState(candidate.dislikes);
+  const [connectedUser, setConnectedUser] = useState<ConnectedUser>();
+
+  useEffect(() => {
+    if (session) {
+      setConnectedUser(session.user as ConnectedUser);
+    }
+  }, [session]);
+
   return (
     <CardContainer>
       <Card
@@ -60,7 +71,7 @@ export const CandidateCard = ({
           <span
             key='heart'
             onClick={async () => {
-              await addLike(candidate._id, '614582fa0c225f33028e96e7').then(
+              await addLike(candidate._id, connectedUser?._id as string).then(
                 (data: CandidateEntity) => {
                   setLikes(data.likes);
                   setDislikes(data.dislikes);
@@ -68,7 +79,7 @@ export const CandidateCard = ({
               );
             }}
           >
-            {candidate.likes?.includes('614582fa0c225f33028e96e7') ? (
+            {candidate.likes?.includes(connectedUser?._id as string) ? (
               <FaHeart size={20} color='red' />
             ) : (
               <FiHeart size={20} color='black' />
@@ -80,12 +91,13 @@ export const CandidateCard = ({
           <span
             key='heartb'
             onClick={async () => {
-              await addDislike(candidate._id, '614582fa0c225f33028e96e7').then(
-                (data: CandidateEntity) => {
-                  setLikes(data.likes);
-                  setDislikes(data.dislikes);
-                },
-              );
+              await addDislike(
+                candidate._id,
+                connectedUser?._id as string,
+              ).then((data: CandidateEntity) => {
+                setLikes(data.likes);
+                setDislikes(data.dislikes);
+              });
             }}
           >
             <FaHeartBroken size={20} color='red' />
