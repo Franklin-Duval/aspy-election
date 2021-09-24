@@ -32,7 +32,7 @@ export class VoterDbService {
   finishVote = async (voterId: string) => {
     return await (await getDb())
       .collection<VoterEntity>(DATABASE_COLLECTIONS.VOTER)
-      .updateOne({ _id: new ObjectId(voterId) }, { voted: true });
+      .updateOne({ _id: new ObjectId(voterId) }, { $set: { voted: true } });
   };
 }
 

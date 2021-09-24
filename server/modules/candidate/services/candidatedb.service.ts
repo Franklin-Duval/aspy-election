@@ -110,11 +110,12 @@ export class CandidateDbService {
 
   addNumberVotes = async (candidateId: string) => {
     const candidate = await this.getCandidate(candidateId);
+    const numberVotes = candidate.numberVotes || 0;
     return await (await getDb())
       .collection<CandidateEntity>(DATABASE_COLLECTIONS.CANDIDATE)
       .updateOne(
         { _id: new ObjectId(candidateId) },
-        { matricule: candidate.numberVotes || 0 + 1 },
+        { $set: { numberVotes: numberVotes + 1 } },
       );
   };
 }
