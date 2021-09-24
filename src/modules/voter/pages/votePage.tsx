@@ -95,7 +95,7 @@ export const VotePage = () => {
                 .filter((candidate) => candidate.post == post._id)
                 .map((candidate) => (
                   <Select.Option key={candidate._id} value={candidate._id}>
-                    {candidate.name}
+                    {candidate.name} {candidate.surename}
                   </Select.Option>
                 ))}
               <Select.Option key='none' value='----'>
@@ -109,6 +109,7 @@ export const VotePage = () => {
           <Button
             type='primary'
             htmlType='submit'
+            size='large'
             loading={isLoading}
             style={{
               width: '100%',
