@@ -39,6 +39,9 @@ const options: NextAuthOptions = {
       },
     }),
   ],
+  pages: {
+    signIn: '/auth/signin',
+  },
   session: {
     jwt: true,
   },

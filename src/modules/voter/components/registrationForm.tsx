@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Form, Input, notification, Select, Upload } from 'antd';
+import { signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { VoterEntity } from 'server/modules/voter/entities/voter.entity';
-import { ROUTES } from 'src/routes';
 import { DEPARTMENTS, LEVELS } from 'src/shared/constants';
 import { addVoter } from '../network/voter.network';
 
@@ -34,7 +34,7 @@ export const RegistrationForm = () => {
           notification.success({
             message: 'Success',
             description:
-              'Your have been registered as a voter. Continue by going through the list of candidate',
+              'Your have been registered as a voter. Login into your account',
             duration: 10,
           });
         } else {
@@ -46,7 +46,7 @@ export const RegistrationForm = () => {
         }
 
         setIsLoading(false);
-        router.push(ROUTES.VOTER.CANDIDATE_LIST);
+        signIn('credentials');
       }}
     >
       <Form.Item name='upload' label='Profile picture'>

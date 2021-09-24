@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { Space } from 'antd';
 import { signIn } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import { ROUTES } from 'src/routes';
 import { ButtonOutline } from '../../styles/Button';
 
 const BannerContainer = styled.div`
@@ -41,16 +43,22 @@ export const Banner = ({
   title: string;
   description: string;
 }) => {
+  const router = useRouter();
   return (
-    <BannerContainer>
+    <BannerContainer id='presentation'>
       <h1 className='title'>{title}</h1>
       <p className='description'>{description}</p>
-      <Space>
-        <ButtonOutline onClick={() => signIn('Custom_sigin')}>
+      <Space style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
+        <ButtonOutline onClick={() => signIn('credentials')}>
           Login
         </ButtonOutline>
-        <ButtonOutline onClick={() => signIn('Custom_sigin')}>
-          Registration
+        <ButtonOutline onClick={() => router.push(ROUTES.VOTER.REGISTRATION)}>
+          Register as Voter
+        </ButtonOutline>
+        <ButtonOutline
+          onClick={() => router.push(ROUTES.CANDIDATE.REGISTRATION)}
+        >
+          Register as Candidate
         </ButtonOutline>
       </Space>
     </BannerContainer>

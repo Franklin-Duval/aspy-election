@@ -7,7 +7,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FaBars } from 'react-icons/fa';
 import { ROUTES } from 'src/routes';
 import { defaultImage } from 'src/shared/defaultImage';
-import { Button, ButtonOutline } from '../../styles/Button';
+import { Button } from '../../styles/Button';
 
 const NavLink = styled.a`
   font-size: 16px;
@@ -90,6 +90,7 @@ const TopNavBarContainer = styled.div`
 `;
 
 const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
+  const router = useRouter();
   return (
     <div className={closeMenu ? 'menu-linkContainer' : 'linkContainer'}>
       <NavLink href='#presentation' onClick={closeMenu}>
@@ -98,10 +99,7 @@ const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
       <NavLink href='#contact' onClick={closeMenu}>
         Contact
       </NavLink>
-      <Button onClick={() => signIn('Custom_sigin')}>Login</Button>
-      <ButtonOutline onClick={() => signIn('Custom_sigin')}>
-        Registration
-      </ButtonOutline>
+      <Button onClick={() => signIn('credentials')}>Login</Button>
     </div>
   );
 };
