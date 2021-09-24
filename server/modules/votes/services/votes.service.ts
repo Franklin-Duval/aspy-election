@@ -1,5 +1,7 @@
 import { candidateService } from 'server/modules/candidate/services/candidate.service';
+import { VoterEntity } from 'server/modules/voter/entities/voter.entity';
 import { voterService } from 'server/modules/voter/services/voter.service';
+import { ErrorType } from 'server/shared/customTypes';
 import { VoteEntity } from '../entities/votes.entity';
 import { votesDbService } from './votesdb.service';
 
@@ -11,6 +13,10 @@ class VotesService {
     return await votesDbService.addVote(vote);
   };
   addMultipleVote = async (votes: VoteEntity[]) => {
+    const voter = (await voterService.getVoter(votes[0].voter)) as VoterEntity;
+    if (voter.voted) {
+      return { message: 'You have already voted' } as ErrorType;
+    }
     const resultVotes = await votesDbService.addMultipleVote(votes);
     for (let vote of votes) {
       if (vote.candidate !== '----') {
