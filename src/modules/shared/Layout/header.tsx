@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
 import { Image, Space } from 'antd';
+import { signOut, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaBars, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
+import { ConnectedUser } from 'server/shared/customTypes';
 import { ROUTES } from 'src/routes';
+import { PRIMARY } from 'src/shared/colors';
 import { defaultImage } from 'src/shared/defaultImage';
 
 const NavLink = styled.p`
@@ -22,7 +25,7 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 15px;
-  background-color: #263238;
+  background-color: ${PRIMARY};
 
   > .logo {
     flex: 2;
@@ -83,7 +86,7 @@ const HeaderContainer = styled.div`
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #263238;
+    background-color: ${PRIMARY};
     overflow-x: hidden;
     transition: 0.5s;
     padding: 30px;
@@ -96,7 +99,7 @@ const HeaderContainer = styled.div`
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #263238;
+    background-color: ${PRIMARY};
     overflow-x: hidden;
     transition: 0.5s;
   }
@@ -107,7 +110,13 @@ const HeaderContainer = styled.div`
   }
 `;
 
-const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
+const MenuContent = ({
+  closeMenu,
+  connectedUser,
+}: {
+  closeMenu?: () => void;
+  connectedUser: ConnectedUser;
+}) => {
   const router = useRouter();
   return (
     <div className={closeMenu ? 'menu-linkContainer' : 'linkContainer'}>
@@ -127,7 +136,9 @@ const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
       >
         Candidate list
       </NavLink>
-      <NavLink onClick={() => router.push(ROUTES.HOME_PAGE)}>
+      <NavLink
+        onClick={() => signOut({ callbackUrl: `${window.location.origin}/` })}
+      >
         <Space>
           <FaSignOutAlt size={20} style={{ marginBottom: -5 }} /> Log out
         </Space>
@@ -135,8 +146,10 @@ const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
       <Space>
         <FaUserCircle size={40} color='white' />
         <div className='user-info'>
-          <h3>Talom Franklin</h3>
-          <h5>Level 5</h5>
+          <h3>
+            {connectedUser.name} {connectedUser.surename}
+          </h3>
+          <h5>{connectedUser.matricule} </h5>
         </div>
       </Space>
     </div>
@@ -145,7 +158,21 @@ const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
 
 export const Header = () => {
   const router = useRouter();
+  const [session, loading] = useSession();
   const [showMenu, setShowMenu] = useState(false);
+
+  if (!session) {
+    return (
+      <div
+        style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 10 }}
+      >
+        Not authenticated
+      </div>
+    );
+  }
+
+  const user = session.user as ConnectedUser;
+
   return (
     <HeaderContainer>
       <Space className='logo'>
@@ -161,7 +188,7 @@ export const Header = () => {
         />
         <h2>ASPY Election</h2>
       </Space>
-      <MenuContent />
+      <MenuContent connectedUser={user} />
 
       <div className={showMenu ? 'menu' : 'menu-close'}>
         <AiOutlineClose
@@ -170,7 +197,10 @@ export const Header = () => {
           style={{ cursor: 'pointer' }}
           onClick={() => setShowMenu(false)}
         />
-        <MenuContent closeMenu={() => setShowMenu(false)} />
+        <MenuContent
+          closeMenu={() => setShowMenu(false)}
+          connectedUser={user}
+        />
       </div>
       <div className='menu-button' onClick={() => setShowMenu(true)}>
         <FaBars size={30} color='white' />

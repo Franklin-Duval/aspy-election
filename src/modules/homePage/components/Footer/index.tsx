@@ -3,13 +3,14 @@ import { Space } from 'antd';
 import React from 'react';
 import { FaChrome, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import { PRIMARY } from 'src/shared/colors';
 
 const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
-  background-color: #263238;
+  background-color: ${PRIMARY};
   color: white;
 
   .social-icon {

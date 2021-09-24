@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 import { Image, Space, Tooltip } from 'antd';
 import parser from 'html-react-parser';
+import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { FaAngleRight, FaHeart, FaHeartBroken } from 'react-icons/fa';
 import { FiHeart } from 'react-icons/fi';
 import { BeatLoader } from 'react-spinners';
 import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
+import { ConnectedUser } from 'server/shared/customTypes';
 import { getCandidate } from 'src/modules/candidate/network/candidate.network';
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
 import { Layout } from 'src/modules/shared/Layout';
@@ -50,14 +52,22 @@ const CandidateDetailContainer = styled.div`
 
 export const CandidateDetails = () => {
   const router = useRouter();
+  const [session, loading] = useSession();
   const candidateId = router.query.candidateId as string;
   const [candidate, setCandidate] = useState<CandidateEntity>();
+  const [connectedUser, setConnectedUser] = useState<ConnectedUser>();
 
   useEffect(() => {
     if (candidateId) {
       getCandidate(candidateId).then((data) => setCandidate(data));
     }
   }, [candidateId]);
+
+  useEffect(() => {
+    if (session) {
+      setConnectedUser(session.user as ConnectedUser);
+    }
+  }, [session]);
 
   return (
     <Layout>
@@ -99,11 +109,13 @@ export const CandidateDetails = () => {
                       onClick={async () => {
                         await addLike(
                           candidate._id,
-                          '614582fa0c225f33028e96e7',
+                          connectedUser?._id as string,
                         ).then((data) => setCandidate(data));
                       }}
                     >
-                      {candidate.likes?.includes('614582fa0c225f33028e96e7') ? (
+                      {candidate.likes?.includes(
+                        connectedUser?._id as string,
+                      ) ? (
                         <FaHeart size={30} color='red' />
                       ) : (
                         <FiHeart size={30} color='black' />
@@ -118,7 +130,7 @@ export const CandidateDetails = () => {
                       onClick={async () => {
                         await addDislike(
                           candidate._id,
-                          '614582fa0c225f33028e96e7',
+                          connectedUser?._id as string,
                         ).then((data) => setCandidate(data));
                       }}
                     >

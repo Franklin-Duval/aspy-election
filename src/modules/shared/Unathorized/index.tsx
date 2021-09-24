@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Button, Image } from 'antd';
+import { signIn } from 'next-auth/client';
+import { PRIMARY } from 'src/shared/colors';
 import { defaultImage } from 'src/shared/defaultImage';
 
 const UnauthorizedContainer = styled.div`
@@ -42,7 +44,7 @@ export const Unauthorized = () => {
   return (
     <UnauthorizedContainer>
       <div>
-        <h3 className='title'>Attention!!!</h3>
+        <h3 className='title'>Warning!!!</h3>
         <Image
           alt='unauthorized'
           src='/401.svg'
@@ -52,15 +54,20 @@ export const Unauthorized = () => {
           preview={false}
         />
         <h3 className='text-description'>
-          Vous n`êtes pas authorisé a accéder à cette ressource. Veuillez vous
-          connecter à votre compte utilisateur
+          You are not authorized to access this page without being
+          authenticated. Go to the login page
         </h3>
         <Button
           size='large'
           type='primary'
-          onClick={() => console.log('login')}
+          onClick={() => signIn('credentials')}
+          style={{
+            backgroundColor: PRIMARY,
+            borderColor: 'transparent',
+            width: '90%',
+          }}
         >
-          Connexion
+          SignIn
         </Button>
       </div>
     </UnauthorizedContainer>

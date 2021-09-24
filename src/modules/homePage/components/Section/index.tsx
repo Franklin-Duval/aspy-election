@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Image } from 'antd';
+import { PRIMARY } from 'src/shared/colors';
 import { defaultImage } from 'src/shared/defaultImage';
 
 const SectionContainer = styled.div<{ reverse?: boolean }>`
@@ -26,7 +27,7 @@ const SectionContainer = styled.div<{ reverse?: boolean }>`
 
     > .title {
       font-size: 30px;
-      color: #263238;
+      color: ${PRIMARY};
     }
 
     > .content {

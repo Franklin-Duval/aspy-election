@@ -3,6 +3,7 @@ import { Button, Form, Image, Input } from 'antd';
 import { CtxOrReq, getCsrfToken, signIn } from 'next-auth/client';
 import { useState } from 'react';
 import { ROUTES } from 'src/routes';
+import { PRIMARY } from 'src/shared/colors';
 import { defaultImage } from 'src/shared/defaultImage';
 
 type LayoutType = Parameters<typeof Form>[0]['layout'];
@@ -13,8 +14,7 @@ const SignInContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: gold;
-  background-image: linear-gradient(to bottom, #263238, white);
+  background-image: linear-gradient(to bottom, ${PRIMARY}, white);
 
   > div {
     background-color: white;
@@ -105,7 +105,7 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
               size='large'
               style={{
                 width: '100%',
-                backgroundColor: '#263238',
+                backgroundColor: PRIMARY,
                 borderColor: 'transparent',
               }}
             >
