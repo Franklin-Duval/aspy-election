@@ -68,6 +68,7 @@ export const VotePage = () => {
                 message: 'Error',
                 description: 'Your have already voted!!!',
               });
+              router.push(ROUTES.VOTER.CANDIDATE_LIST);
             } else {
               notification.error({
                 message: 'Error',
