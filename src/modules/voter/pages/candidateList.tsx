@@ -1,4 +1,5 @@
-import { Button, Space } from 'antd';
+import styled from '@emotion/styled';
+import { Button } from 'antd';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -12,6 +13,24 @@ import { Layout } from 'src/modules/shared/Layout';
 import { ROUTES } from 'src/routes';
 import { PRIMARY } from 'src/shared/colors';
 import { DisplayPost } from '../components/displayPost';
+
+const ApplicationContainer = styled.div`
+  padding: 10px;
+  margin-bottom: 30px;
+  border: 2px solid ${PRIMARY};
+
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    h2 {
+      margin-right: 20px;
+      text-align: center;
+    }
+  }
+`;
 
 export const CandidateList = () => {
   const router = useRouter();
@@ -34,17 +53,14 @@ export const CandidateList = () => {
   return (
     <Layout>
       <CandidateGuard>
-        <Space style={{ borderWidth: 2, borderColor: 'black' }}>
+        <ApplicationContainer>
           {connectedUser?.apply && (
-            <>
-              <h2 style={{ margin: 0 }}>
-                Complete your application to a given post
-              </h2>
+            <div>
+              <h2>Complete your application to a given post</h2>
               <Button
                 type='primary'
                 size='large'
                 style={{
-                  width: '100%',
                   backgroundColor: PRIMARY,
                   borderColor: 'transparent',
                 }}
@@ -52,9 +68,9 @@ export const CandidateList = () => {
               >
                 Application
               </Button>
-            </>
+            </div>
           )}
-        </Space>
+        </ApplicationContainer>
       </CandidateGuard>
       <h2>List of all Candidates</h2>
       {posts.map((post) => (
