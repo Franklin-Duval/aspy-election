@@ -48,12 +48,17 @@ export const Banner = ({
     <BannerContainer>
       <h1 className='title'>{title}</h1>
       <p className='description'>{description}</p>
-      <Space>
+      <Space style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
         <ButtonOutline onClick={() => signIn('credentials')}>
           Login
         </ButtonOutline>
         <ButtonOutline onClick={() => router.push(ROUTES.VOTER.REGISTRATION)}>
-          Registration
+          Register as Voter
+        </ButtonOutline>
+        <ButtonOutline
+          onClick={() => router.push(ROUTES.CANDIDATE.REGISTRATION)}
+        >
+          Register as Candidate
         </ButtonOutline>
       </Space>
     </BannerContainer>
