@@ -19,7 +19,7 @@ export class VoterDbService {
 
   getVoter = async (voterId: string) => {
     return await (await getDb())
-      .collection<VoterEntity>(DATABASE_COLLECTIONS.VOTER)
+      .collection(DATABASE_COLLECTIONS.VOTER)
       .findOne({ _id: new ObjectId(voterId) });
   };
 
