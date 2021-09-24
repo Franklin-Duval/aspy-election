@@ -7,9 +7,7 @@ export const fetchCandidates = (): Promise<CandidateEntity[]> => {
   return customFetch.get(API_ROUTES.CANDIDATES.GET_ALL);
 };
 
-export const addCandidate = (
-  candidateToCreate: CandidateEntity,
-): Promise<CandidateEntity> => {
+export const addCandidate = (candidateToCreate: CandidateEntity) => {
   let formData = new FormData();
   formData.append('name', candidateToCreate.name);
   formData.append('surename', candidateToCreate.surename);

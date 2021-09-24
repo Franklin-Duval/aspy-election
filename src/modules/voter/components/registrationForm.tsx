@@ -30,15 +30,24 @@ export const RegistrationForm = () => {
         const profilePicture = data.upload?.fileList[0]?.originFileObj;
         const postData = { ...data, image: profilePicture } as VoterEntity;
 
-        const response = await addVoter(postData);
-        if (response._id) {
-          notification.success({
-            message: 'Success',
-            description:
-              'Your have been registered as a voter. Login into your account',
-            duration: 10,
-          });
-        } else {
+        try {
+          const response = await addVoter(postData);
+          if (response._id) {
+            notification.success({
+              message: 'Success',
+              description:
+                'Your have been registered as a voter. Login into your account',
+              duration: 10,
+            });
+            signIn('credentials');
+          } else {
+            notification.error({
+              message: 'Error',
+              description: response.message,
+              duration: 10,
+            });
+          }
+        } catch (error) {
           notification.error({
             message: 'Error',
             description: 'Sorry!!! An error has occured. Try again once more..',
@@ -47,7 +56,6 @@ export const RegistrationForm = () => {
         }
 
         setIsLoading(false);
-        signIn('credentials');
       }}
     >
       <Form.Item name='upload' label='Profile picture'>
