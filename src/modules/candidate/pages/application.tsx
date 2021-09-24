@@ -89,12 +89,17 @@ export const CandidateApplication = () => {
                   description: 'Your application has been registered',
                 });
                 router.back();
+              } else {
+                notification.error({
+                  message: 'Error',
+                  description: data.message,
+                });
               }
             });
             setIsLoading(false);
           }}
         >
-          Submit
+          Submit your application
         </Button>
       </CandidateGuard>
     </Layout>

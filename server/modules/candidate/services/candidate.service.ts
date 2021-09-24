@@ -56,6 +56,12 @@ class CandidateService {
   };
 
   submitApplication = async (application: Application) => {
+    const candidate = await this.getCandidate(application._id);
+    if (candidate.post) {
+      return {
+        message: 'Your application has already been submitted!!!',
+      } as ErrorType;
+    }
     return await candidateDbService.submitApplication(application);
   };
 
