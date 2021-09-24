@@ -5,6 +5,7 @@ import { signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
+import { PRIMARY } from 'src/shared/colors';
 import { DEPARTMENTS, LEVELS } from 'src/shared/constants';
 import { addCandidate } from '../network/candidate.network';
 
@@ -182,7 +183,17 @@ export const RegistrationForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type='primary' htmlType='submit' loading={isLoading}>
+        <Button
+          type='primary'
+          htmlType='submit'
+          loading={isLoading}
+          size='large'
+          style={{
+            width: '100%',
+            backgroundColor: PRIMARY,
+            borderColor: 'transparent',
+          }}
+        >
           Submit
         </Button>
       </Form.Item>
