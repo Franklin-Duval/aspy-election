@@ -44,6 +44,7 @@ apiRoute.post(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
     creation_date: new Date().toISOString(),
     voted: false,
     image: fileUploaded?._id.toHexString(),
+    numberVotes: 0,
     likes: [],
     dislikes: [],
   } as CandidateEntity;
