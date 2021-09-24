@@ -114,7 +114,7 @@ export class CandidateDbService {
       .collection<CandidateEntity>(DATABASE_COLLECTIONS.CANDIDATE)
       .updateOne(
         { _id: new ObjectId(candidateId) },
-        { matricule: candidate.numberVotes + 1 },
+        { matricule: candidate.numberVotes || 0 + 1 },
       );
   };
 }
