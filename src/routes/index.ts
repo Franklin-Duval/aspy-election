@@ -3,6 +3,7 @@ export const ROUTES = {
   VOTER: {
     REGISTRATION: '/voter/registration',
     CANDIDATE_LIST: '/voter/candidateList',
+    VOTING: '/voter/voting',
     CANDIDATE_DETAILS: (candidateId: string) =>
       `/voter/candidateDetails/${candidateId}`,
   },
