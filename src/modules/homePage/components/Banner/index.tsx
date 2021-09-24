@@ -3,6 +3,7 @@ import { Space } from 'antd';
 import { signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { ROUTES } from 'src/routes';
+import { PRIMARY } from 'src/shared/colors';
 import { ButtonOutline } from '../../styles/Button';
 
 const BannerContainer = styled.div`
@@ -13,7 +14,7 @@ const BannerContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 30px;
-  background-color: #263238;
+  background-color: ${PRIMARY};
 
   > .title {
     color: white;

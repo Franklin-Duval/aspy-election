@@ -7,6 +7,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FaBars, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
 import { ConnectedUser } from 'server/shared/customTypes';
 import { ROUTES } from 'src/routes';
+import { PRIMARY } from 'src/shared/colors';
 import { defaultImage } from 'src/shared/defaultImage';
 
 const NavLink = styled.p`
@@ -24,7 +25,7 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 15px;
-  background-color: #263238;
+  background-color: ${PRIMARY};
 
   > .logo {
     flex: 2;
@@ -85,7 +86,7 @@ const HeaderContainer = styled.div`
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #263238;
+    background-color: ${PRIMARY};
     overflow-x: hidden;
     transition: 0.5s;
     padding: 30px;
@@ -98,7 +99,7 @@ const HeaderContainer = styled.div`
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #263238;
+    background-color: ${PRIMARY};
     overflow-x: hidden;
     transition: 0.5s;
   }

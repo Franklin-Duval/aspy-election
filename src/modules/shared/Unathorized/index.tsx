@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Button, Image } from 'antd';
 import { signIn } from 'next-auth/client';
+import { PRIMARY } from 'src/shared/colors';
 import { defaultImage } from 'src/shared/defaultImage';
 
 const UnauthorizedContainer = styled.div`
@@ -61,7 +62,7 @@ export const Unauthorized = () => {
           type='primary'
           onClick={() => signIn('credentials')}
           style={{
-            backgroundColor: '#263238',
+            backgroundColor: PRIMARY,
             borderColor: 'transparent',
             width: '90%',
           }}

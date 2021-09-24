@@ -2,12 +2,13 @@ import styled from '@emotion/styled';
 import { Input, Space, Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { useState } from 'react';
+import { PRIMARY } from 'src/shared/colors';
 
 const DataTableContainer = styled.div`
   zoom: 0.9;
 
   th {
-    background-color: #263238 !important;
+    background-color: ${PRIMARY} !important;
     color: white !important;
     font-weight: bold;
   }
