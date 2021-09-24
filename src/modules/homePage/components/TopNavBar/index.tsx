@@ -7,7 +7,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FaBars } from 'react-icons/fa';
 import { ROUTES } from 'src/routes';
 import { defaultImage } from 'src/shared/defaultImage';
-import { Button, ButtonOutline } from '../../styles/Button';
+import { Button } from '../../styles/Button';
 
 const NavLink = styled.a`
   font-size: 16px;
@@ -100,9 +100,6 @@ const MenuContent = ({ closeMenu }: { closeMenu?: () => void }) => {
         Contact
       </NavLink>
       <Button onClick={() => signIn('credentials')}>Login</Button>
-      <ButtonOutline onClick={() => router.push(ROUTES.VOTER.REGISTRATION)}>
-        Registration
-      </ButtonOutline>
     </div>
   );
 };

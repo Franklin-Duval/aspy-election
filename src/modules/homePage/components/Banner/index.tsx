@@ -45,7 +45,7 @@ export const Banner = ({
 }) => {
   const router = useRouter();
   return (
-    <BannerContainer>
+    <BannerContainer id='presentation'>
       <h1 className='title'>{title}</h1>
       <p className='description'>{description}</p>
       <Space style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
