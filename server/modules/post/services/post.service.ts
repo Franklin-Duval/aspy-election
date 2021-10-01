@@ -12,6 +12,9 @@ class PostsService {
   getPost = async (postId: string) => {
     return await postsDbService.getPost(postId);
   };
+  incrementNumberCandidates = async (postId: string) => {
+    return await postsDbService.incrementNumberCandidates(postId);
+  };
 }
 
 export const postsService = new PostsService();

@@ -22,6 +22,17 @@ export class PostsDbService {
       .collection(DATABASE_COLLECTIONS.POST)
       .findOne({ _id: new ObjectId(postId) });
   };
+
+  incrementNumberCandidates = async (postId: string) => {
+    const post = (await this.getPost(postId)) as PostEntity;
+    const numberCandidates = post.numberCandidates || 0;
+    return await (await getDb())
+      .collection(DATABASE_COLLECTIONS.POST)
+      .updateOne(
+        { _id: new ObjectId(postId) },
+        { $set: { numberCandidates: numberCandidates + 1 } },
+      );
+  };
 }
 
 export const postsDbService = new PostsDbService();
