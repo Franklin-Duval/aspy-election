@@ -96,7 +96,7 @@ export const VotePage = () => {
                 .filter((candidate) => candidate.post == post._id)
                 .map((candidate) => (
                   <Select.Option key={candidate._id} value={candidate._id}>
-                    {candidate.name}
+                    {candidate.name} {candidate.surename}
                   </Select.Option>
                 ))}
               <Select.Option key='none' value='----'>
