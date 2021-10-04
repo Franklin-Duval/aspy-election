@@ -55,10 +55,13 @@ export const UserCard = ({ user }: { user: VoterEntity }) => {
             <p className='level'>{user.level} </p>
             <p className='level'>{user.contact} </p>
           </div>
-          <p className='level'>
-            Voted:{' '}
-            <span style={{ color: 'red' }}> {user.voted ? 'YES' : 'NO'}</span>
-          </p>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className='level'>
+              Voted:{' '}
+              <span style={{ color: 'red' }}> {user.voted ? 'YES' : 'NO'}</span>
+            </p>
+            <p className='level'>{user.matricule}</p>
+          </div>
         </div>
       </Card>
     </CardContainer>
