@@ -61,6 +61,10 @@ class CandidateService {
   addNumberVotes = async (candidateId: string) => {
     return await candidateDbService.addNumberVotes(candidateId);
   };
+
+  finishVote = async (candidateId: string) => {
+    return await candidateDbService.finishVote(candidateId);
+  };
 }
 
 export const candidateService = new CandidateService();

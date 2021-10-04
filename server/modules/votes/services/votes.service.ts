@@ -1,3 +1,4 @@
+import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
 import { candidateService } from 'server/modules/candidate/services/candidate.service';
 import { VoterEntity } from 'server/modules/voter/entities/voter.entity';
 import { voterService } from 'server/modules/voter/services/voter.service';
@@ -14,8 +15,17 @@ class VotesService {
   };
   addMultipleVote = async (votes: VoteEntity[]) => {
     const voter = (await voterService.getVoter(votes[0].voter)) as VoterEntity;
-    if (voter.voted) {
-      return { message: 'You have already voted' } as ErrorType;
+    if (voter) {
+      if (voter.voted) {
+        return { message: 'You have already voted' } as ErrorType;
+      }
+    } else {
+      const candidate = (await candidateService.getCandidate(
+        votes[0].voter,
+      )) as CandidateEntity;
+      if (candidate && candidate.voted) {
+        return { message: 'You have already voted' } as ErrorType;
+      }
     }
     const resultVotes = await votesDbService.addMultipleVote(votes);
     for (let vote of votes) {
@@ -23,7 +33,11 @@ class VotesService {
         await candidateService.addNumberVotes(vote.candidate);
       }
     }
-    await voterService.finishVote(votes[0].voter);
+    if (voter) {
+      await voterService.finishVote(votes[0].voter);
+    } else {
+      await candidateService.finishVote(votes[0].voter);
+    }
     return resultVotes;
   };
 }

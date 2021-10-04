@@ -112,7 +112,11 @@ export const CandidateCard = ({
             height={200}
             width='100%'
             style={{ objectFit: 'cover' }}
-            src={API_ROUTES.IMAGES.GET(candidate.image)}
+            src={
+              candidate.image
+                ? API_ROUTES.IMAGES.GET(candidate.image)
+                : defaultImage
+            }
             fallback={defaultImage}
           />
         }

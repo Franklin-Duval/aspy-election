@@ -11,4 +11,9 @@ export const ROUTES = {
     REGISTRATION: '/candidate/registration',
     APPLICATION: '/candidate/application',
   },
+  ADMIN: {
+    POST: '/admin/post',
+    USER_PAGE: '/admin/users',
+    RESULT_PAGE: '/admin/results',
+  },
 };
