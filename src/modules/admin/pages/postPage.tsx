@@ -5,6 +5,7 @@ import { PostEntity } from 'server/modules/post/entities/post.entity';
 import { ButtonWithModal } from 'src/modules/shared/ButtonWithModal/ButtonWithModal';
 import { DataTable } from 'src/modules/shared/DataTable';
 import { Layout } from 'src/modules/shared/Layout';
+import { ROUTES } from 'src/routes';
 import { PostForm } from '../components/postForm';
 import { fetchPosts } from '../network/admin.network';
 
@@ -18,8 +19,12 @@ export const PostPage = () => {
   return (
     <Layout>
       <Space>
-        <Button onClick={() => router.push('/admin/users')}>View Users</Button>
-        <Button>View Results</Button>
+        <Button onClick={() => router.push(ROUTES.ADMIN.USER_PAGE)}>
+          View Users
+        </Button>
+        <Button onClick={() => router.push(ROUTES.ADMIN.RESULT_PAGE)}>
+          View Results
+        </Button>
       </Space>
       <h2>List of different posts in the bureau</h2>
       <DataTable<PostEntity>
