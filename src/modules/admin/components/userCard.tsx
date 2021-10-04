@@ -41,7 +41,7 @@ export const UserCard = ({ user }: { user: VoterEntity }) => {
             height={200}
             width='100%'
             style={{ objectFit: 'cover' }}
-            src={API_ROUTES.IMAGES.GET(user.image)}
+            src={user.image ? API_ROUTES.IMAGES.GET(user.image) : defaultImage}
             fallback={defaultImage}
           />
         }
