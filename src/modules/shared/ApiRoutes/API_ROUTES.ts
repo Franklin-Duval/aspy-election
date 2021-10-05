@@ -17,6 +17,7 @@ export const API_ROUTES = {
     ADD: '/api/post/add',
   },
   VOTES: {
+    GET_ALL: '/api/vote',
     ADD_MULTIPLE: '/api/vote/addMultiple',
   },
   IMAGES: {
