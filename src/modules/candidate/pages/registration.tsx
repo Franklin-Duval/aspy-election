@@ -30,7 +30,6 @@ const RegistrationContainer = styled.div`
 export const Registration = () => {
   return (
     <RegistrationContainer>
-      <h2>Register yourself to a post in ASPY Executive members</h2>
       <div>
         <div
           style={{
