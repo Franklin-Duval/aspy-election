@@ -89,6 +89,12 @@ export const CandidateApplication = () => {
                   description: 'Your application has been registered',
                 });
                 router.back();
+              } else if (data.message) {
+                notification.error({
+                  message: 'Error',
+                  description: data.message,
+                });
+                router.back();
               }
             });
             setIsLoading(false);
