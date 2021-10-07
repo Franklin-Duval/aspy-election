@@ -1,6 +1,6 @@
 import { EncryptionService } from 'server/modules/ecryptionService/encryptionService';
 import { postsService } from 'server/modules/post/services/post.service';
-import { Application } from 'server/shared/customTypes';
+import { Application, ErrorType } from 'server/shared/customTypes';
 import { CandidateEntity } from '../entities/candidate.entity';
 import { candidateDbService } from './candidatedb.service';
 
@@ -27,9 +27,16 @@ class CandidateService {
   };
 
   submitApplication = async (application: Application) => {
-    const result = await candidateDbService.submitApplication(application);
-    await postsService.incrementNumberCandidates(application.post);
-    return result;
+    const candidate = await this.getCandidate(application._id);
+    if (candidate.planOfAction) {
+      return {
+        message: 'Your application has already been registered',
+      } as ErrorType;
+    } else {
+      const result = await candidateDbService.submitApplication(application);
+      await postsService.incrementNumberCandidates(application.post);
+      return result;
+    }
   };
 
   addLike = async (candidateId: string, voterId: string) => {
