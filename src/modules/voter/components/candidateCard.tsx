@@ -79,7 +79,7 @@ export const CandidateCard = ({
               );
             }}
           >
-            {candidate.likes?.includes(connectedUser?._id as string) ? (
+            {likes?.includes(connectedUser?._id as string) ? (
               <FaHeart size={20} color='red' />
             ) : (
               <FiHeart size={20} color='black' />
