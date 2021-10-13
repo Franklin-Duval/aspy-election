@@ -26,7 +26,7 @@ export class AspainDbService {
   getAspianByMatricule = async (matricule: string) => {
     return await (await getDb())
       .collection(DATABASE_COLLECTIONS.ASPIAN)
-      .findOne({ matricule: new ObjectId(matricule) });
+      .findOne({ matricule: matricule });
   };
 }
 
