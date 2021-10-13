@@ -15,5 +15,6 @@ export const ROUTES = {
     POST: '/admin/post',
     USER_PAGE: '/admin/users',
     RESULT_PAGE: '/admin/results',
+    ASPIANS: '/admin/aspians',
   },
 };
