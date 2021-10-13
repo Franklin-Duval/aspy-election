@@ -1,3 +1,4 @@
+import { aspianService } from 'server/modules/aspians/services/aspian.service';
 import { EncryptionService } from 'server/modules/ecryptionService/encryptionService';
 import { postsService } from 'server/modules/post/services/post.service';
 import { Application, ErrorType } from 'server/shared/customTypes';
@@ -10,6 +11,13 @@ class CandidateService {
   };
 
   addCandidate = async (candidate: CandidateEntity) => {
+    const isAspain = await this.checkAspain(candidate.matricule);
+    if (!isAspain) {
+      return {
+        message:
+          'Your are not registered as an Aspian. Contact the administrator first, inorder to be registered\nWhatsapp: 690115022',
+      } as ErrorType;
+    }
     const candidateToAdd = {
       ...candidate,
       password: await EncryptionService.hashPassword(
@@ -71,6 +79,14 @@ class CandidateService {
 
   finishVote = async (candidateId: string) => {
     return await candidateDbService.finishVote(candidateId);
+  };
+
+  checkAspain = async (candidateMatricule: string) => {
+    const result = await aspianService.getAspianByMatricule(candidateMatricule);
+    if (result) {
+      return true;
+    }
+    return false;
   };
 }
 
