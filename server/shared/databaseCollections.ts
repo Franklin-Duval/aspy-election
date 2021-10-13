@@ -3,4 +3,5 @@ export const DATABASE_COLLECTIONS = {
   CANDIDATE: 'candidate',
   POST: 'post',
   VOTE: 'vote',
+  ASPIAN: 'aspians',
 };

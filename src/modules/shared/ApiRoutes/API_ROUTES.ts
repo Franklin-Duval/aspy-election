@@ -23,4 +23,8 @@ export const API_ROUTES = {
   IMAGES: {
     GET: (imageId: string) => `/api/images/${imageId}`,
   },
+  ASPIANS: {
+    GET_ALL: '/api/aspian',
+    ADD: '/api/aspian/add',
+  },
 };

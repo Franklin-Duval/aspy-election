@@ -38,9 +38,18 @@ export const RegistrationForm = () => {
           notification.success({
             message: 'Success',
             description:
-              'Your have been registered as candidate. Login into your account',
+              'Your have been registered as a voter. Login into your account',
             duration: 10,
           });
+          setIsLoading(false);
+          signIn('credentials');
+        } else if (response.message) {
+          notification.error({
+            message: 'Error',
+            description: response.message,
+            duration: null,
+          });
+          setIsLoading(false);
         } else {
           notification.error({
             message: 'Error',
@@ -48,9 +57,6 @@ export const RegistrationForm = () => {
             duration: 10,
           });
         }
-
-        setIsLoading(false);
-        signIn('credentials');
       }}
     >
       <Form.Item name='upload' label='Profile picture'>

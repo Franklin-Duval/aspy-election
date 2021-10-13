@@ -7,7 +7,7 @@ export const fetchVoters = (): Promise<VoterEntity[]> => {
   return customFetch.get(API_ROUTES.VOTERS.GET_ALL);
 };
 
-export const addVoter = (voterToCreate: VoterEntity): Promise<VoterEntity> => {
+export const addVoter = (voterToCreate: VoterEntity) => {
   let formData = new FormData();
   formData.append('name', voterToCreate.name);
   formData.append('surename', voterToCreate.surename);
