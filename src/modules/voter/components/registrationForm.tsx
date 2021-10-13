@@ -31,23 +31,32 @@ export const RegistrationForm = () => {
         const postData = { ...data, image: profilePicture } as VoterEntity;
 
         const response = await addVoter(postData);
-        if (response._id) {
-          notification.success({
-            message: 'Success',
-            description:
-              'Your have been registered as a voter. Login into your account',
-            duration: 10,
-          });
-        } else {
+        if (response instanceof VoterEntity) {
+          if (response._id) {
+            notification.success({
+              message: 'Success',
+              description:
+                'Your have been registered as a voter. Login into your account',
+              duration: 10,
+            });
+          } else {
+            notification.error({
+              message: 'Error',
+              description:
+                'Sorry!!! An error has occured. Try again once more..',
+              duration: 10,
+            });
+          }
+          setIsLoading(false);
+          signIn('credentials');
+        } else if (response.message) {
           notification.error({
             message: 'Error',
-            description: 'Sorry!!! An error has occured. Try again once more..',
-            duration: 10,
+            description: response.message,
+            duration: null,
           });
+          setIsLoading(false);
         }
-
-        setIsLoading(false);
-        signIn('credentials');
       }}
     >
       <Form.Item name='upload' label='Profile picture'>
