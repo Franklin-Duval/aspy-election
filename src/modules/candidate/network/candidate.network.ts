@@ -1,5 +1,5 @@
 import { CandidateEntity } from 'server/modules/candidate/entities/candidate.entity';
-import { Application } from 'server/shared/customTypes';
+import { Application, ErrorType } from 'server/shared/customTypes';
 import { API_ROUTES } from 'src/modules/shared/ApiRoutes/API_ROUTES';
 import { customFetch, responseHandler } from 'src/shared/customFetch';
 
@@ -9,7 +9,7 @@ export const fetchCandidates = (): Promise<CandidateEntity[]> => {
 
 export const addCandidate = (
   candidateToCreate: CandidateEntity,
-): Promise<CandidateEntity> => {
+): Promise<CandidateEntity | ErrorType> => {
   let formData = new FormData();
   formData.append('name', candidateToCreate.name);
   formData.append('surename', candidateToCreate.surename);
