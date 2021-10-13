@@ -14,6 +14,10 @@ class AspianService {
   getAspian = async (aspianId: string) => {
     return await aspianDbService.getAspian(aspianId);
   };
+
+  getAspianByMatricule = async (matricule: string) => {
+    return await aspianDbService.getAspianByMatricule(matricule);
+  };
 }
 
 export const aspianService = new AspianService();

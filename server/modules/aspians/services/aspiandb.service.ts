@@ -22,6 +22,12 @@ export class AspainDbService {
       .collection(DATABASE_COLLECTIONS.ASPIAN)
       .findOne({ _id: new ObjectId(aspianId) });
   };
+
+  getAspianByMatricule = async (matricule: string) => {
+    return await (await getDb())
+      .collection(DATABASE_COLLECTIONS.ASPIAN)
+      .findOne({ matricule: new ObjectId(matricule) });
+  };
 }
 
 export const aspianDbService = new AspainDbService();
