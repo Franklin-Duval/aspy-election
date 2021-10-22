@@ -22,7 +22,8 @@ class VoterService {
     const voterExists = await this.checkVoterExists(voter.matricule);
     if (voterExists) {
       return {
-        message: 'A user with this matricule already exists!!!',
+        message:
+          'A user with this matricule already exists! Verify the matricule entered. In case of any problem, contact the administrator\nWhatsapp: 690115022',
       } as ErrorType;
     }
     // check if candidate with matricule exists

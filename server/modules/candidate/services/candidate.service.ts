@@ -1,6 +1,7 @@
 import { aspianService } from 'server/modules/aspians/services/aspian.service';
 import { EncryptionService } from 'server/modules/ecryptionService/encryptionService';
 import { postsService } from 'server/modules/post/services/post.service';
+import { voterService } from 'server/modules/voter/services/voter.service';
 import { Application, ErrorType } from 'server/shared/customTypes';
 import { CandidateEntity } from '../entities/candidate.entity';
 import { candidateDbService } from './candidatedb.service';
@@ -18,17 +19,18 @@ class CandidateService {
           'Your are not registered as an Aspian. Contact the administrator first, inorder to be registered\nWhatsapp: 690115022',
       } as ErrorType;
     }
-    // check if voter with matricule exists
+    // check if candidate with matricule exists
     const candidateExists = await this.checkCandidateExists(
       candidate.matricule,
     );
     if (candidateExists) {
       return {
-        message: 'A user with this matricule already exists!!!',
+        message:
+          'A user with this matricule already exists! Verify the matricule entered. In case of any problem, contact the administrator\nWhatsapp: 690115022',
       } as ErrorType;
     }
     // check if candidate with matricule exists
-    const voterExists = await candidateService.checkCandidateExists(
+    const voterExists = await voterService.checkVoterExists(
       candidate.matricule,
     );
     if (voterExists) {
