@@ -28,6 +28,7 @@ const BannerContainer = styled.div`
     font-size: 18px;
     text-align: center;
     max-width: 750px;
+    margin: 10px;
   }
 
   @media (min-width: 768px) {

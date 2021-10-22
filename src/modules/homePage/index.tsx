@@ -9,23 +9,23 @@ const sectionList = [
   {
     textBeforeImage: false,
     imageUrl: '/voter.svg',
-    title: 'Elect your candidates to designed post',
+    title: 'Elect your candidates to the designed posts',
     content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam quas omnis minus alias maiores doloribus cumque odio! Consectetur maiores voluptates quasi odio porro, soluta nesciunt eius. Consequuntur ipsamvoluptatibus nemo.',
+      'Register and create an account inorder to take part in ASPY Election and elect your different candidates',
   },
   {
     textBeforeImage: true,
     imageUrl: '/candidate.svg',
-    title: 'Gardez le control du système',
+    title: 'Become a Candidate to participate in ASPY Election',
     content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam quas omnis minus alias maiores doloribus cumque odio! Consectetur maiores voluptates quasi odio porro, soluta nesciunt eius. Consequuntur ipsamvoluptatibus nemo.',
+      'You can have the opportunity to parcipate and take part in the daily tasks and activities of ASPY, while managing the different affaires of the association',
   },
   {
     textBeforeImage: false,
     imageUrl: '/login.svg',
-    title: 'Localisez vos équipements à tout instant',
+    title: 'Access to all informations concerning the election',
     content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam quas omnis minus alias maiores doloribus cumque odio! Consectetur maiores voluptates quasi odio porro, soluta nesciunt eius. Consequuntur ipsamvoluptatibus nemo.',
+      'You have access to real time information about the election, and can consult the results whenever you want',
   },
 ];
 
@@ -38,9 +38,7 @@ export const Home = () => {
       </div>
       <Banner
         title='ASPY Voting Platform'
-        description='MAEL est une application qui permet le suivi et la localisation des
-        équipements de votre entreprise à tout instant, disponible sur sa
-        plateforme web et version Desktop pour vos ordinateurs'
+        description='This platform is precisely built inorder to manage the elections in ASPY, for a better and more efficient management of elections'
       />
       {sectionList.map(({ title, imageUrl, content, textBeforeImage }) => (
         <Section
