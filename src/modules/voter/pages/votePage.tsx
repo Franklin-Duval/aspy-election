@@ -56,7 +56,7 @@ export const VotePage = () => {
               voteDate: new Date().toISOString(),
             });
           });
-          addVotes(votes).then((data) => {
+          await addVotes(votes).then((data) => {
             if (data.acknowledged) {
               notification.success({
                 message: 'Success',
