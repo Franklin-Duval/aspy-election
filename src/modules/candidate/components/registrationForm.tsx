@@ -38,7 +38,7 @@ export const RegistrationForm = () => {
           notification.success({
             message: 'Success',
             description:
-              'Your have been registered as a voter. Login into your account',
+              'Your have been registered as a candidate. Login into your account',
             duration: 10,
           });
           setIsLoading(false);
