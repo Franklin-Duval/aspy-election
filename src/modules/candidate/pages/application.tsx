@@ -48,7 +48,7 @@ export const CandidateApplication = () => {
           ))}
         </Select>
 
-        <h2>Manifesto</h2>
+        <h2>Manifesto (present yourself) </h2>
         {/* <RichEditor content={manifesto} setContent={setManifesto} /> */}
         <Input.TextArea
           rows={10}
