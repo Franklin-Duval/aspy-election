@@ -15,6 +15,7 @@ import { addDislike, addLike } from '../network/voter.network';
 const CardContainer = styled.div`
   margin: 5px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  height: 100%;
 
   .name {
     font-size: 16px;
@@ -61,12 +62,14 @@ export const CandidateCard = ({
         style={{ width: 300 }}
         actions={[
           <Tooltip key='book' title='View details'>
-            <FaBook
-              size={20}
+            <span
               onClick={() =>
                 router.push(ROUTES.VOTER.CANDIDATE_DETAILS(candidate._id))
               }
-            />
+            >
+              <FaBook size={20} />
+              <p style={{ margin: 0, fontSize: 12, color: 'black' }}>Details</p>
+            </span>
           </Tooltip>,
           <span
             key='heart'
