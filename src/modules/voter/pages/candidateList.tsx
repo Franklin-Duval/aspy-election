@@ -72,24 +72,25 @@ export const CandidateList = () => {
           </ApplicationContainer>
         )}
       </CandidateGuard>
-      {new Date().getTime() > new Date(2021, 8, 20, 14, 0, 0).getTime() && (
-        <ApplicationContainer>
-          <div>
-            <h2>The voting date has arrived. Start voting your candidates</h2>
-            <Button
-              type='primary'
-              size='large'
-              style={{
-                backgroundColor: PRIMARY,
-                borderColor: 'transparent',
-              }}
-              onClick={() => router.push(ROUTES.VOTER.VOTING)}
-            >
-              Voting
-            </Button>
-          </div>
-        </ApplicationContainer>
-      )}
+      {new Date().getTime() > new Date(2021, 9, 27, 14, 0, 0).getTime() &&
+        new Date().getTime() < new Date(2021, 9, 27, 16, 0, 0).getTime() && (
+          <ApplicationContainer>
+            <div>
+              <h2>The voting date has arrived. Start voting your candidates</h2>
+              <Button
+                type='primary'
+                size='large'
+                style={{
+                  backgroundColor: PRIMARY,
+                  borderColor: 'transparent',
+                }}
+                onClick={() => router.push(ROUTES.VOTER.VOTING)}
+              >
+                Voting
+              </Button>
+            </div>
+          </ApplicationContainer>
+        )}
       <h2>List of all Candidates</h2>
       {posts.map((post) => (
         <DisplayPost
