@@ -28,6 +28,9 @@ export const AspianPage = () => {
         <Button onClick={() => router.push(ROUTES.ADMIN.ASPIANS)}>
           View Aspians
         </Button>
+        <Button onClick={() => router.push(ROUTES.ADMIN.POST)}>
+          View Posts
+        </Button>
       </Space>
       <div style={{ margin: 10 }}></div>
       <Space>

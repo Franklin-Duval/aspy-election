@@ -28,6 +28,9 @@ export const PostPage = () => {
         <Button onClick={() => router.push(ROUTES.ADMIN.ASPIANS)}>
           View Aspians
         </Button>
+        <Button onClick={() => router.push(ROUTES.ADMIN.POST)}>
+          View Posts
+        </Button>
       </Space>
       <h2>List of different posts in the bureau</h2>
       <DataTable<PostEntity>

@@ -1,12 +1,16 @@
+import { Button, Space } from 'antd';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 import { VoterEntity } from 'server/modules/voter/entities/voter.entity';
 import { fetchCandidates } from 'src/modules/candidate/network/candidate.network';
 import { Layout } from 'src/modules/shared/Layout';
 import { fetchVoters } from 'src/modules/voter/network/voter.network';
+import { ROUTES } from 'src/routes';
 import { UserCard } from '../components/userCard';
 
 export const UsersPage = () => {
+  const router = useRouter();
   const [users, setUsers] = useState<VoterEntity[]>([]);
   useEffect(() => {
     const fetchUsers = async () => {
@@ -25,6 +29,20 @@ export const UsersPage = () => {
 
   return (
     <Layout>
+      <Space>
+        <Button onClick={() => router.push(ROUTES.ADMIN.USER_PAGE)}>
+          View Users
+        </Button>
+        <Button onClick={() => router.push(ROUTES.ADMIN.RESULT_PAGE)}>
+          View Results
+        </Button>
+        <Button onClick={() => router.push(ROUTES.ADMIN.ASPIANS)}>
+          View Aspians
+        </Button>
+        <Button onClick={() => router.push(ROUTES.ADMIN.POST)}>
+          View Posts
+        </Button>
+      </Space>
       <h2>List of all registered users</h2>
       <div>
         <h3>
