@@ -18,7 +18,7 @@ export const AspianPage = () => {
 
   return (
     <Layout>
-      <Space>
+      <Space style={{ flexWrap: 'wrap' }}>
         <Button onClick={() => router.push(ROUTES.ADMIN.USER_PAGE)}>
           View Users
         </Button>
