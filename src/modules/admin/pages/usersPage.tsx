@@ -81,6 +81,48 @@ export const UsersPage = () => {
           ) / 100}{' '}
           %
         </h3>
+        <Space style={{ flexWrap: 'wrap' }} size={50}>
+          <h3>
+            <FaAngleRight
+              color='red'
+              style={{ marginBottom: -3, marginRight: 5 }}
+            />
+            Level 1 :{' '}
+            {users.filter((filter) => filter.level == 'Level 1').length}
+          </h3>
+          <h3>
+            <FaAngleRight
+              color='red'
+              style={{ marginBottom: -3, marginRight: 5 }}
+            />
+            Level 2 :{' '}
+            {users.filter((filter) => filter.level == 'Level 2').length}
+          </h3>
+          <h3>
+            <FaAngleRight
+              color='red'
+              style={{ marginBottom: -3, marginRight: 5 }}
+            />
+            Level 3 :{' '}
+            {users.filter((filter) => filter.level == 'Level 3').length}
+          </h3>
+          <h3>
+            <FaAngleRight
+              color='red'
+              style={{ marginBottom: -3, marginRight: 5 }}
+            />
+            Level 4 :{' '}
+            {users.filter((filter) => filter.level == 'Level 4').length}
+          </h3>
+          <h3>
+            <FaAngleRight
+              color='red'
+              style={{ marginBottom: -3, marginRight: 5 }}
+            />
+            Level 5 :{' '}
+            {users.filter((filter) => filter.level == 'Level 5').length}
+          </h3>
+        </Space>
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {users.map((user) => (
