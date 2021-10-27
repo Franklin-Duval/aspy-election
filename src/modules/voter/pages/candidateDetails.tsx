@@ -79,7 +79,11 @@ export const CandidateDetails = () => {
             <Image
               alt='logo'
               className='image'
-              src={API_ROUTES.IMAGES.GET(candidate.image)}
+              src={
+                candidate.image
+                  ? API_ROUTES.IMAGES.GET(candidate.image)
+                  : defaultImage
+              }
               style={{ objectFit: 'cover' }}
               fallback={defaultImage}
             />
